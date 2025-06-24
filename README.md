@@ -3,9 +3,10 @@ This project aims to recover H matrix of a LDPC code without candidate set on a 
 
 Final goal is to fully recover Parity Check Matrix(H) of a NAND flash memory
 
+[Theoretical background explained from following link][link]
 
-[Theoretical background explained from following link]
-(https://bluesparrow2000.github.io/paperreview/LDPC/)
+[link]:https://bluesparrow2000.github.io/paperreview/LDPC/
+
 
 ## Installations
 This project is based on python. Below are the packages that needs to be installed:
