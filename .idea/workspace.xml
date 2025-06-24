@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/LDPC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LDPC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extracter.py" beforeDir="false" afterPath="$PROJECT_DIR$/extracter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gauss_elim.py" beforeDir="false" afterPath="$PROJECT_DIR$/gauss_elim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prettyprinter.py" beforeDir="false" afterPath="$PROJECT_DIR$/prettyprinter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparsifier_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparsifier_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparsifyer.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparsifyer.py" afterDir="false" />
-    </list>
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Readme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +20,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "blueSparrow2000"
+  }
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/blueSparrow2000/LDPC.git",
@@ -75,6 +70,19 @@
       <option name="presentableId" value="Default" />
       <updated>1750737013205</updated>
     </task>
+    <task id="LOCAL-00001" summary="Readme">
+      <option name="closed" value="true" />
+      <created>1750772180727</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750772180727</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme" />
   </component>
 </project>
