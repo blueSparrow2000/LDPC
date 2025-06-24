@@ -1,9 +1,9 @@
 # LDPC recovery
-This project aims to recover H matrix of a LDPC code without candidate set on a noisy channel
+This project aims to recover H matrix of a LDPC code without candidate set on a noisy channel      
 
-Final goal is to fully recover Parity Check Matrix(H) of a NAND flash memory
+Final goal is to fully recover Parity Check Matrix(H) of a NAND flash memory      
 
-[Theoretical background explained from following link][link]
+[Theoretical background][link]
 
 [link]:https://bluesparrow2000.github.io/paperreview/LDPC/
 
@@ -13,27 +13,27 @@ This project is based on python. Below are the packages that needs to be install
 
 numpy      
 numba      
-scipy        
+scipy              
 
 ## Files
 - main.py      
 An executable file that generates LDPC code with random H matrix, and performs ECO to recover H matrix 
-- LDPC_sampler.py
+- LDPC_sampler.py      
 Randomly generates H matrix and code words corresponding to it 
-- ECO.py
+- ECO.py      
 Performs fast Elementary Column Operation
-- gauss_elim.py
+- gauss_elim.py      
 Original code for fast gaussian elimination on GF2 (binary matrix)
-- extracter.py
+- extracter.py      
 Extracts parity check vector from ECO matrix
-- sparsifier.py
+- sparsifier.py      
 Sparsify a binary matrix
-- prettyprinter.py
+- prettyprinter.py      
 Prints 2D array in a readable format
 
 
 ## version history
-2025.06.24 Basic LDPC simulation without noise
+2025.06.24 Basic LDPC simulation without noise      
 
 ## License
-Available for non-commercial use
+Available for non-commercial use      
