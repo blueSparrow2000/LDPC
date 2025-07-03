@@ -8,9 +8,9 @@ ECO matrix E
 즉 수행한 column operation들을 모아두어야 한다
 
 '''
-@numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
+#@numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
 
-def ERO(M):
+def row_swap(M):
     # ECO를 적용하기 전 row 만 바꾸는 작업 => code word의 순서만 바꾸는 거라 큰 의미 없음
 
     m,n = M.shape
@@ -36,7 +36,7 @@ def ERO(M):
 
 def ECO(M):
     # PASS 1
-    M = ERO(M)
+    M = row_swap(M)
     M = np.transpose(M) # ECO는 transpose후 ERO를 적용한것과 같다
     m,n = M.shape
 

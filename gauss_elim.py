@@ -9,7 +9,6 @@ column의 1을 모두 제거해서 leading 1 을 남기지 않아야 함
 # M is a mxn matrix binary matrix
 # all elements in M should be uint8
 def gf2elim(M,verbose=False):
-
     m,n = M.shape
     i=0
     j=0
@@ -48,3 +47,4 @@ def gf2elim(M,verbose=False):
         j += 1
 
     return M
+

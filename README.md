@@ -26,6 +26,8 @@ Performs fast Elementary Column Operation
 Original code for fast gaussian elimination on GF2 (binary matrix)
 - extracter.py      
 Extracts parity check vector from ECO matrix
+- verifier.py
+Format H matrix into diagonal format and verify if it is same as the original one
 - sparsifier.py      
 Sparsify a binary matrix
 - prettyprinter.py      
@@ -34,6 +36,14 @@ Prints 2D array in a readable format
 
 ## version history
 2025.06.24 Basic LDPC simulation without noise      
+2026.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)
+
+
+TODO        
+Add gaussian noise and test
+Read the real codeword data and try to recover H matrix
+
+
 
 ## License
 Available for non-commercial use      
