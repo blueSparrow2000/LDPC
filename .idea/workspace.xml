@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Readme">
-      <change afterPath="$PROJECT_DIR$/matrix_mul.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/verifier.py" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="1,2 bit shift noise and sort by reliability">
+      <change afterPath="$PROJECT_DIR$/fullcode.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extracter.py" beforeDir="false" afterPath="$PROJECT_DIR$/extracter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gauss_elim.py" beforeDir="false" afterPath="$PROJECT_DIR$/gauss_elim.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matrix_mul.py" beforeDir="false" afterPath="$PROJECT_DIR$/matrix_mul.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +55,10 @@
     "Python.ECO.executor": "Run",
     "Python.LDPC_sampler.executor": "Run",
     "Python.extracter.executor": "Run",
+    "Python.fullcode.executor": "Run",
     "Python.gauss_elim.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.variables.executor": "Run",
     "Python.verifier.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -113,11 +115,20 @@
       <option name="project" value="LOCAL" />
       <updated>1750772447545</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1,2 bit shift noise and sort by reliability">
+      <option name="closed" value="true" />
+      <created>1751530208846</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751530208846</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Readme" />
+    <MESSAGE value="1,2 bit shift noise and sort by reliability" />
+    <option name="LAST_COMMIT_MESSAGE" value="1,2 bit shift noise and sort by reliability" />
   </component>
 </project>

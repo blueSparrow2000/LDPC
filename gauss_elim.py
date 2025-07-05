@@ -4,7 +4,7 @@ import numba
 완벽한 gaussian elimination이 아니다
 column의 1을 모두 제거해서 leading 1 을 남기지 않아야 함
 '''
-# @numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
+@numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
 
 # M is a mxn matrix binary matrix
 # all elements in M should be uint8

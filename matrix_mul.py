@@ -1,7 +1,10 @@
 import numpy as np
 import numba
+from variables import LARGE_CODE
 
-#@numba.njit(fastmath=True, cache=True, parallel=True)
+
+@numba.njit(fastmath=True, cache=True, parallel=True)
+
 def matmul_f2(m1, m2):
     mr = np.empty((m1.shape[0], m2.shape[1]), dtype=np.bool_)
     for i in numba.prange(mr.shape[0]):

@@ -2,8 +2,6 @@ import numpy as np
 from matrix_mul import matmul_f2
 ''' 
 threshold: number of 1's that is acceptable - rule of thumb to 0.65*(M-n)/2 considering noise rate
-
-
 '''
 def get_sparse_column_idx(A, threshold = 0):
     # for each column, count number of ones

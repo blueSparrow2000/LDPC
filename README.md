@@ -24,23 +24,24 @@ Randomly generates H matrix and code words corresponding to it
 Performs fast Elementary Column Operation
 - gauss_elim.py      
 Original code for fast gaussian elimination on GF2 (binary matrix)
-- extracter.py      
-Extracts parity check vector from ECO matrix
-- verifier.py
-Format H matrix into diagonal format and verify if it is same as the original one
-- sparsifier.py      
-Sparsify a binary matrix
-- prettyprinter.py      
-Prints 2D array in a readable format
-
+- extracter.py       
+Extracts parity check vector from ECO matrix                  
+- verifier.py               
+Format H matrix into diagonal format and verify if it is same as the original one     
+- sparsifier.py        
+Sparsify a binary matrix       
+- prettyprinter.py       
+Prints 2D array in a readable format     
+- fullcode.py           
+One file that contains everything, used in translation to C code
 
 ## version history
-2025.06.24 Basic LDPC simulation without noise      
+2025.06.24 Basic LDPC simulation without noise        
 2026.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)
 
 
 TODO        
-Add gaussian noise and test
+Add gaussian noise and test                                       
 Read the real codeword data and try to recover H matrix
 
 

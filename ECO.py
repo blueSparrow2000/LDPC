@@ -8,8 +8,8 @@ ECO matrix E
 즉 수행한 column operation들을 모아두어야 한다
 
 '''
-#@numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
 
+@numba.jit(nopython=True, parallel=True) #parallel speeds up computation only over very large matrices
 def row_swap(M):
     # ECO를 적용하기 전 row 만 바꾸는 작업 => code word의 순서만 바꾸는 거라 큰 의미 없음
 
@@ -34,6 +34,7 @@ def row_swap(M):
 
     return M
 
+# @numba.jit(nopython=True, parallel=True)
 def ECO(M):
     # PASS 1
     M = row_swap(M)
