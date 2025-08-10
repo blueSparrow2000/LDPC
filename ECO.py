@@ -31,18 +31,18 @@ def row_swap(M):
         i += 1
         j += 1
 
-
     return M
 
 # @numba.jit(nopython=True, parallel=True)
-def ECO(M):
+def ECO(M,Q = None, BGCE = True):
     # PASS 1
     M = row_swap(M)
     M = np.transpose(M) # ECO는 transpose후 ERO를 적용한것과 같다
     m,n = M.shape
 
     # make a matrix that contains operation
-    Q = np.identity(m, dtype=int)  # ECO matrix
+    if Q is None:
+        Q = np.identity(m, dtype=int)  # ECO matrix
 
     i=0
     j=0
@@ -71,6 +71,8 @@ def ECO(M):
         col = np.copy(M[:, j]) #make a copy otherwise M will be directly affected
 
         col[i] = 0 #avoid xoring pivot row with itself
+        if not BGCE:# only GCE, not bidirectional
+            col[:i] = 0
 
         flip = np.outer(col, aijn)
 

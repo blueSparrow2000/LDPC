@@ -2,6 +2,7 @@ import numpy as np
 import scipy.sparse as scsparse
 from gauss_elim import *
 from matrix_mul import matmul_f2
+from prettyprinter import print_arr
 np.random.seed(seed=1)
 
 
@@ -24,15 +25,16 @@ noise_level: amount of noise that simulates bit shift
 
 
 
-def sample_LDPC(n,k, pooling_factor = 2,noise_level = 0):
+def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
     # build a generator matrix
-    I = np.identity(k, dtype=int)
-    P = scsparse.random(k, n-k, density=0.25, data_rvs=np.ones)
+    I = np.identity(k, dtype=np.int8)
+
+    P = scsparse.random(k, n-k, density=density, data_rvs=np.ones)
     P = P.toarray().astype(np.int64)
     generator = np.concatenate((I, P), axis=1) # generator mat
 
     # sample PCM
-    I_prime = np.identity(n-k, dtype=int)
+    I_prime = np.identity(n-k, dtype=np.int8)
     H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
     #sample message bits - each row is a message bit
@@ -62,6 +64,12 @@ def sample_LDPC(n,k, pooling_factor = 2,noise_level = 0):
         code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
         return H, code_words
     elif noise_level==10: # add gaussian noise to code_words matrix
+        noise_prob = 0.0001 #0.001 # e-3 scale
+        G_noise = scsparse.random(M, n, density=noise_prob, data_rvs=np.ones).toarray().astype(np.int64)
+        # print_arr(G_noise)
+        num_of_error_bits = (G_noise==1).sum()
+        print("Number of error bits: %d"%num_of_error_bits)
+        code_words = code_words^G_noise
         return H, code_words
 
     return H, code_words
