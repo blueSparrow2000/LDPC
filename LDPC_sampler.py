@@ -27,14 +27,14 @@ noise_level: amount of noise that simulates bit shift
 
 def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
     # build a generator matrix
-    I = np.identity(k, dtype=np.int8)
+    I = np.identity(k, dtype=np.int64)
 
     P = scsparse.random(k, n-k, density=density, data_rvs=np.ones)
     P = P.toarray().astype(np.int64)
     generator = np.concatenate((I, P), axis=1) # generator mat
 
     # sample PCM
-    I_prime = np.identity(n-k, dtype=np.int8)
+    I_prime = np.identity(n-k, dtype=np.int64)
     H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
     #sample message bits - each row is a message bit

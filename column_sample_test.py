@@ -49,8 +49,8 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 
 ######################### Process LDPC code ###########################
 H_formatted = GERCE(sampled_code, 1)
-
-# R,Q = ECO(sampled_code)
+# Q_aux = np.identity(codeword_len, dtype=np.int64)
+# R,Q = ECO(sampled_code,Q_aux)
 #
 # # print("Result:")
 # # print_arr(R)

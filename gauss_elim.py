@@ -28,7 +28,6 @@ def gf2elim(M,verbose=False):
         M[i] = temp
         if verbose:
             print(M)
-
             print("ERO")
         aijn = M[i, j:]
 

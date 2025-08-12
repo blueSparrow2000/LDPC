@@ -23,7 +23,7 @@ def GERCE(M, Niter = 1,threshold=0,databit_num=0):
     H = None
 
     for i in range(Niter):
-        Q = np.identity(n, dtype=int)  # reset ECO mat
+        Q = np.identity(n, dtype=np.int64)  # reset ECO mat
         if i == 0: # no permutation for first loop
             R = M
         else:

@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="make full code in one file">
-      <change afterPath="$PROJECT_DIR$/GERCE.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/column_extract_reconstruction.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/column_sample_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dubiner_sparsifyer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/formatter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/progressive_reconstruction.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/submatrix_sampling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Column sampling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prettyprinter.py" beforeDir="false" afterPath="$PROJECT_DIR$/prettyprinter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/fullcode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gauss_elim.py" beforeDir="false" afterPath="$PROJECT_DIR$/gauss_elim.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/verifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,31 +47,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.ECO.executor": "Run",
-    "Python.GERCE.executor": "Run",
-    "Python.LDPC_sampler.executor": "Run",
-    "Python.column_extract_reconstruction.executor": "Run",
-    "Python.column_sample_test.executor": "Run",
-    "Python.dubiner_sparsifyer.executor": "Run",
-    "Python.extracter.executor": "Run",
-    "Python.fullcode.executor": "Run",
-    "Python.gauss_elim.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.prettyprinter.executor": "Run",
-    "Python.progressive_reconstruction.executor": "Run",
-    "Python.submatrix_sampling.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.variables.executor": "Run",
-    "Python.verifier.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/kingc/.spyder-py3/multi object gravity simulator",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.ECO.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GERCE.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LDPC_sampler.executor&quot;: &quot;Run&quot;,
+    &quot;Python.column_extract_reconstruction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.column_sample_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dubiner_sparsifyer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extracter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fullcode.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gauss_elim.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.prettyprinter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.progressive_reconstruction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.submatrix_sampling.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.verifier.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kingc/.spyder-py3/multi object gravity simulator&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -146,13 +136,22 @@
       <option name="project" value="LOCAL" />
       <updated>1751694618990</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Column sampling">
+      <option name="closed" value="true" />
+      <created>1754824579515</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754824579517</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Readme" />
     <MESSAGE value="1,2 bit shift noise and sort by reliability" />
     <MESSAGE value="make full code in one file" />
-    <option name="LAST_COMMIT_MESSAGE" value="make full code in one file" />
+    <MESSAGE value="Column sampling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Column sampling" />
   </component>
 </project>
