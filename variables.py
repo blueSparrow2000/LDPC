@@ -1,8 +1,8 @@
 '''
 Some variables to input
 '''
-codeword_len = 100
-databit_num = 90
+codeword_len = 1000
+databit_num = 900
 density = 0.15  # number of ones in a P matrix
 if codeword_len > 500:
     density = 0.08
