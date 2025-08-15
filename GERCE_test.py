@@ -74,7 +74,7 @@ H_formatted = GERCE(sampled_code, 1)
 
 # padding H
 mh, nh = H_formatted.shape
-H_padded = np.zeros((mh, n), dtype=np.int8)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
+H_padded = np.zeros((mh, n), dtype=np.int64)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
 H_padded[:, col_idx] = H_formatted
 
 

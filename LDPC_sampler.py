@@ -3,7 +3,8 @@ import scipy.sparse as scsparse
 from gauss_elim import *
 from matrix_mul import matmul_f2
 from prettyprinter import print_arr
-np.random.seed(seed=1)
+from variables import NOISE_PROB
+
 
 
 '''
@@ -26,6 +27,7 @@ noise_level: amount of noise that simulates bit shift
 
 
 def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
+    global NOISE_PROB
     # build a generator matrix
     I = np.identity(k, dtype=np.int64)
 
@@ -64,8 +66,7 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
         code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
         return H, code_words
     elif noise_level==10: # add gaussian noise to code_words matrix
-        noise_prob = 0.0001 #0.001 # e-3 scale
-        G_noise = scsparse.random(M, n, density=noise_prob, data_rvs=np.ones).toarray().astype(np.int64)
+        G_noise = scsparse.random(M, n, density=NOISE_PROB, data_rvs=np.ones).toarray().astype(np.int64)
         # print_arr(G_noise)
         num_of_error_bits = (G_noise==1).sum()
         print("Number of error bits: %d"%num_of_error_bits)

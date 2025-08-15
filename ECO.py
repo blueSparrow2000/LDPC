@@ -82,31 +82,37 @@ def ECO(M,Q, BGCE = True): #Q = None,
             Q[i] = temp
 
         # only if there exists 1 in this diagonal (i,i)
-        aijn = M[i, j:]
-
         col = np.copy(M[:, j]) #make a copy otherwise M will be directly affected
 
         col[i] = 0 #avoid xoring pivot row with itself
         if not BGCE:# only GCE, not bidirectional
             col[:i] = 0
 
-        flip = np.outer(col, aijn)
-        M[:, j:] = M[:, j:] ^ flip
-
-        # update Q => do a column operation too!
-        qijn = Q[i,:]
-        flip2 = np.outer(col, qijn) # this is more expansive
-        Q = Q ^ flip2
+        ########################## numpy optimizer(slow) #############################
+        # aijn = M[i, j:]
+        # flip = np.outer(col, aijn)
+        # M[:, j:] = M[:, j:] ^ flip
+        #
+        # # update Q => do a column operation too!
+        # qijn = Q[i,:]
+        # flip2 = np.outer(col, qijn) # this is more expansive
+        # Q = Q ^ flip2
+        ########################## numpy optimizer #############################
 
         ######################### MANUAL FOR LOOP #########################
+        # safe parallelism
+        for ix in numba.prange(m):
+            if col[ix]:
+                M[ix, j:] ^= M[i, j:] # flip bit
+                Q[ix, :] ^= Q[i,:]
+
+        # unstable?
         # for ix in numba.prange(m):
-        #     for jx in numba.prange(j, n):
-        #         M[ix, jx] ^= col[ix]^aijn[jx-j] # flip bit
-        #
-        # Qicopy = copy.deepcopy(Q[i])
-        # for ix in numba.prange(m):
-        #     for jx in numba.prange(m):
-        #         Q[ix,jx] ^= col[ix]^Qicopy[jx]
+        #     if col[ix]:
+        #         for jx in numba.prange(j,n):
+        #             M[ix, jx] ^= M[i, jx] # flip bit
+        #         for jx in numba.prange(m):
+        #             Q[ix, jx] ^= Q[i,jx]
 
         ######################### MANUAL FOR LOOP #########################
         i += 1

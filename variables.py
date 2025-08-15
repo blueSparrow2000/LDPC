@@ -1,8 +1,9 @@
 '''
 Some variables to input
 '''
-codeword_len = 1000
-databit_num = 900
+import numpy as np
+codeword_len = 100
+databit_num = 90
 density = 0.15  # number of ones in a P matrix
 if codeword_len > 500:
     density = 0.08
@@ -17,4 +18,8 @@ threshold = round(((pooling_factor-1)*codeword_len)*0.325)  # suggested beta coe
 BGCE = True # without BGCE, one may get more dual vectors but they are likely to be erronous
 if not BGCE: # if GCE, higher the threshold
     threshold *= 2
+
+NOISE_PROB = 0.0001
+
+np.random.seed(seed=0) # 6
 # print(threshold)

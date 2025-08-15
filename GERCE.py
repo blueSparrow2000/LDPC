@@ -1,5 +1,6 @@
 import numpy as np
 from ECO import *
+from ECO_original import *
 from extracter import *
 from variables import threshold, parity_num,databit_num
 from formatter import diag_format
@@ -16,8 +17,8 @@ def permute(M,Q):
 '''
 Not tested. Should test this function!
 '''
-def GERCE(M, Niter = 1,threshold=0,databit_num=0):
-
+def GERCE(M, Niter = 1):
+    global databit_num, threshold
     m, n = M.shape
     parity_num = n-databit_num
     H = None
@@ -30,7 +31,7 @@ def GERCE(M, Niter = 1,threshold=0,databit_num=0):
             R,Q = permute(M,Q) # permute original M
 
         # perform ECO
-        R,Q = ECO(R,Q,BGCE=True)
+        R,Q = ECO(R,Q,BGCE=True) # ECO_original(R,Q,BGCE=True)
 
         # extract sparse col
         idx = get_sparse_column_idx(R, threshold)

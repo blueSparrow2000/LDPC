@@ -29,7 +29,7 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 # Testing GERCE
 # with FULL column extractions
 
-Hr = GERCE(A, threshold = threshold, databit_num=databit_num)
+Hr = GERCE(A)
 
 print("GERCE complete!")
 this_time = time.time()
