@@ -1,5 +1,5 @@
 from prettyprinter import *
-from ECO import *
+# from ECO import *
 from ECO_original import *
 from LDPC_sampler import *
 from extracter import *
@@ -26,23 +26,23 @@ if not LARGE_CODE:
     print("Code word matrix: ")
     print_arr(A)
 else:
-    print("Code word generated")
+    print("Code word generated", end=' - ')
 
-print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
+print(" %s seconds" % round(time.time() - start_time,3))
 
 
 # 1. apply ECO to A(code word matrix) and get Q, R
 Q_aux = np.identity(codeword_len, dtype=np.int64)
-R,Q = ECO(A,Q_aux,BGCE=BGCE)#ECO_original(A,Q_aux,BGCE=BGCE)
+R,Q = ECO_original(A,Q_aux,BGCE=BGCE)#ECO_original(A,Q_aux,BGCE=BGCE)
 if not LARGE_CODE:
     print("Result:")
     print_arr(R)
     print("ECO matrix: ")
     print_arr(Q)
 else:
-    print("ECO complete")
+    print("ECO complete",end=' - ')
 
-print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
+print(" %s seconds" % round(time.time() - start_time,3))
 
 # 2. search for sparse columns in R and get columns in Q of the corresponding indices
 idx = get_sparse_column_idx(R,threshold)
@@ -63,7 +63,7 @@ if not LARGE_CODE:
     print_arr(H_formatted)
 
 print("Success?: ", check_success(H,H_formatted))
-print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
+print("Total elapsed time: %s seconds" % round(time.time() - start_time,3))
 
 
 

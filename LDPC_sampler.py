@@ -40,7 +40,7 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
     H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
     #sample message bits - each row is a message bit
-    M = pooling_factor*n # 10 messages
+    M = round(pooling_factor*n) # 10 messages
     message_bits = np.random.choice([0, 1], size=(M,k), p=[1./2, 1./2]) #  np.identity(k, dtype=int)
 
     ################################## matmul needs to be faster only here ###############################################

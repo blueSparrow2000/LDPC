@@ -15,7 +15,7 @@ the original method
 def ECO_original(M,Q, BGCE = True):
     m,n = M.shape # we know m>n (Q is nxn)
     # L = np.identity(m,dtype=np.int64) # left multiplication matrix (dont need)
-
+    # print(m,n) m: 2000, n: 1000
     i=0
     j=0
     while i < m and j < n:
@@ -35,14 +35,15 @@ def ECO_original(M,Q, BGCE = True):
                 # L[k2] = L[i]
                 # L[i] = temp
 
+
             # col swap
             temp = np.copy(M[:,k1])
-            M[:,k1] = M[:,i]
-            M[:,i] = temp
+            M[:,k1] = M[:,j]
+            M[:,j] = temp
 
             temp = np.copy(Q[:,k1])
-            Q[:,k1] = Q[:,i]
-            Q[:,i] = temp
+            Q[:,k1] = Q[:,j]
+            Q[:,j] = temp
 
         # Column elimination
         row = np.copy(M[i])
@@ -51,6 +52,7 @@ def ECO_original(M,Q, BGCE = True):
             row[:j] =0
 
         for jx in numba.prange(n):
+        # for jx in range(n):
             if row[jx]:
                 M[i:,jx] ^= M[i:,j]
                 Q[:,jx] ^= Q[:,j]

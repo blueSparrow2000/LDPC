@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Readme update">
-      <change afterPath="$PROJECT_DIR$/ECO_original.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GERCE_permute.py" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="ECO original - used for GERCE">
+      <change afterPath="$PROJECT_DIR$/csv_writter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECO_original.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO_original.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/column_extract_reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/column_extract_reconstruction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/column_sample_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755012165286</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ECO original - used for GERCE">
+      <option name="closed" value="true" />
+      <created>1755256286023</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1755256286023</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,6 +180,7 @@
     <MESSAGE value="Column sampling" />
     <MESSAGE value="Now ECO supports parallelism to full capacity!" />
     <MESSAGE value="Readme update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Readme update" />
+    <MESSAGE value="ECO original - used for GERCE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ECO original - used for GERCE" />
   </component>
 </project>
