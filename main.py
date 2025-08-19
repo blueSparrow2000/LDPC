@@ -1,5 +1,5 @@
 from prettyprinter import *
-# from ECO import *
+from ECO import *
 from ECO_original import *
 from LDPC_sampler import *
 from extracter import *
@@ -33,7 +33,7 @@ print(" %s seconds" % round(time.time() - start_time,3))
 
 # 1. apply ECO to A(code word matrix) and get Q, R
 Q_aux = np.identity(codeword_len, dtype=np.int64)
-R,Q = ECO_original(A,Q_aux,BGCE=BGCE)#ECO_original(A,Q_aux,BGCE=BGCE)
+R,Q = ECO(A,Q_aux,BGCE=BGCE)#ECO_original(A,Q_aux,BGCE=BGCE)
 if not LARGE_CODE:
     print("Result:")
     print_arr(R)

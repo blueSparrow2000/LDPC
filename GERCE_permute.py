@@ -13,6 +13,8 @@ start_time = time.time()
 '''
 Implementation of LDPC PCM recovering method of paper:
 A fast reconstruction of the parity check matrices of LDPC codes in a noisy environment (2021)
+
+- permuting does not help recovering
 '''
 
 # sample LDPC code word

@@ -22,6 +22,7 @@ def GERCE(M, Niter = 1):
     m, n = M.shape
     parity_num = n-databit_num
     H = None
+    # cur_rank = 0
 
     for i in range(Niter):
         Q = np.identity(n, dtype=np.int64)  # reset ECO mat
@@ -49,8 +50,20 @@ def GERCE(M, Niter = 1):
 
         if H is None: # first loop
             H = H_formatted
+            # cur_rank = np.linalg.matrix_rank(H) ### rank calculation ###
         else:
+            ### rank calculation ###
+            # for h in H_formatted:
+            #     Htemp = np.append(H, [h], axis = 0)
+            #     if np.linalg.matrix_rank(Htemp) > cur_rank: # increase rank
+            #         H = np.append(H, [h], axis=0) #add h into H
+            #         cur_rank += 1
+            ### rank calculation ###
+
+            ### original code ###
             H = np.concatenate((H,H_formatted), axis = 0)
+            ### original code ###
+
         # if H.shape[0] >= parity_num:
         #     return H # stop iteration
 

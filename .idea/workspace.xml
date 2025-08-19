@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="ECO original - used for GERCE">
-      <change afterPath="$PROJECT_DIR$/csv_writter.py" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Debug ECO_original">
+      <change afterPath="$PROJECT_DIR$/GERCE_onetext.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/threshold_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECO_original.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO_original.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GERCE.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GERCE_permute.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_permute.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GERCE_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv/test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_writter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csv_writter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparsifyer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,32 +57,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.ECO.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GERCE.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GERCE_permute.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LDPC_sampler.executor&quot;: &quot;Run&quot;,
-    &quot;Python.column_extract_reconstruction.executor&quot;: &quot;Run&quot;,
-    &quot;Python.column_sample_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dubiner_sparsifyer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.extracter.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fullcode.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gauss_elim.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.prettyprinter.executor&quot;: &quot;Run&quot;,
-    &quot;Python.progressive_reconstruction.executor&quot;: &quot;Run&quot;,
-    &quot;Python.submatrix_sampling.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.variables.executor&quot;: &quot;Run&quot;,
-    &quot;Python.verifier.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kingc/.spyder-py3/multi object gravity simulator&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.ECO.executor": "Run",
+    "Python.ECO_original.executor": "Run",
+    "Python.GERCE.executor": "Run",
+    "Python.GERCE_permute.executor": "Run",
+    "Python.GERCE_test.executor": "Run",
+    "Python.LDPC_sampler.executor": "Run",
+    "Python.column_extract_reconstruction.executor": "Run",
+    "Python.column_sample_test.executor": "Run",
+    "Python.csv_writter.executor": "Run",
+    "Python.dubiner_sparsifyer.executor": "Run",
+    "Python.extracter.executor": "Run",
+    "Python.fullcode.executor": "Run",
+    "Python.gauss_elim.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.prettyprinter.executor": "Run",
+    "Python.progressive_reconstruction.executor": "Run",
+    "Python.submatrix_sampling.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.threshold_analysis.executor": "Run",
+    "Python.variables.executor": "Run",
+    "Python.verifier.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/kingc/.spyder-py3/multi object gravity simulator",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -170,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755256286023</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Debug ECO_original">
+      <option name="closed" value="true" />
+      <created>1755434362178</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1755434362178</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -181,6 +202,7 @@
     <MESSAGE value="Now ECO supports parallelism to full capacity!" />
     <MESSAGE value="Readme update" />
     <MESSAGE value="ECO original - used for GERCE" />
-    <option name="LAST_COMMIT_MESSAGE" value="ECO original - used for GERCE" />
+    <MESSAGE value="Debug ECO_original" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug ECO_original" />
   </component>
 </project>

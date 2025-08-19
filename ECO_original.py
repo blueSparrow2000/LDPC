@@ -26,24 +26,25 @@ def ECO_original(M,Q, BGCE = True):
                 if M[k2,j] == 0: # no row 1 found
                     i+=1 # We are making LTM matrix => i is incremented
                     continue
-                # row swap - this need to be revised since Q is nxn and n<m (index out of range)
+                # row swap
                 temp = np.copy(M[k2])
                 M[k2] = M[i]
                 M[i] = temp
 
+                # Q is nxn and n<m (index out of range) so row operation is applied on other matrix L
                 # temp = np.copy(L[k2])
                 # L[k2] = L[i]
                 # L[i] = temp
 
+            else: # col 1 found!
+                # col swap
+                temp = np.copy(M[:,k1])
+                M[:,k1] = M[:,j]
+                M[:,j] = temp
 
-            # col swap
-            temp = np.copy(M[:,k1])
-            M[:,k1] = M[:,j]
-            M[:,j] = temp
-
-            temp = np.copy(Q[:,k1])
-            Q[:,k1] = Q[:,j]
-            Q[:,j] = temp
+                temp = np.copy(Q[:,k1])
+                Q[:,k1] = Q[:,j]
+                Q[:,j] = temp
 
         # Column elimination
         row = np.copy(M[i])
@@ -51,8 +52,8 @@ def ECO_original(M,Q, BGCE = True):
         if not BGCE:
             row[:j] =0
 
-        for jx in numba.prange(n):
         # for jx in range(n):
+        for jx in numba.prange(n):
             if row[jx]:
                 M[i:,jx] ^= M[i:,j]
                 Q[:,jx] ^= Q[:,j]

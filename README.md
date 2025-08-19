@@ -43,15 +43,16 @@ One file that contains everything, used in translation to C code
 
 ## version history
 2025.06.24 Basic LDPC simulation without noise        
-2026.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)
-2026.07.22 ~  2026.07.25 Progressive reconstruction implementation
-2026.07.31 Column extraction method implementation 
-2026.08.13 ECO parallelism to full capacity
+2025.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)
+2025.07.22 ~  2026.07.25 Progressive reconstruction implementation
+2025.07.31 Column extraction method implementation 
+2025.08.13 ECO parallelism to full capacity
+2025.08.17 Debug ECO for GERCE file
+2025.08.19 CSV file saver
 
-TODO        
-Add gaussian noise and test                                       
+TODO
 Read the real codeword data and try to recover H matrix
-
+Find optimal beta value
 
 
 ## License

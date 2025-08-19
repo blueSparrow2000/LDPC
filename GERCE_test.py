@@ -14,7 +14,8 @@ start_time = time.time()
 n = 10
 k = 7
 
-I = np.identity(7, dtype=np.int8)
+
+I = np.identity(7, dtype=np.int64)
 
 ########## custom generator component P: k x (n-k)
 P = np.array([[1,0,0], [0,1,0], [1,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,0]])
@@ -22,11 +23,11 @@ P = np.array([[1,0,0], [0,1,0], [1,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,0]])
 generator = np.concatenate((I, P), axis=1) # generator mat
 
 # sample PCM
-I_prime = np.identity(n-k, dtype=np.int8)
+I_prime = np.identity(n-k, dtype=np.int64)
 H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
 #sample message bits - each row is a message bit
-M = 1*n # 10 messages
+M = 2*n # 10 messages
 message_bits = np.random.choice([0, 1], size=(M,k), p=[1./2, 1./2]) #  np.identity(k, dtype=int)
 
 code_words = matmul_f2(message_bits, generator) # message_bits@generator
@@ -36,7 +37,7 @@ print_arr(H)
 ################################## sample LDPC code ##########################################
 
 ### sampling column index
-col_idx = [0,1,2,3,4,5,6,7,8,9]#[0,1,2,3,8]
+col_idx = [0,1,2,3,4,5,6,7,8,9]#[0,1,2,3,8] #
 
 sampled_code = code_words[:, col_idx]
 # print("code word given: ")
@@ -48,7 +49,7 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 
 
 ######################### Process LDPC code ###########################
-H_formatted = GERCE(sampled_code, 1)
+H_formatted = GERCE(sampled_code, 1) # databut_num = 7 / threshold = 3
 # Q_aux = np.identity(codeword_len, dtype=np.int64)
 # R,Q = ECO(sampled_code,Q_aux)
 #
@@ -76,7 +77,7 @@ H_formatted = GERCE(sampled_code, 1)
 mh, nh = H_formatted.shape
 H_padded = np.zeros((mh, n), dtype=np.int64)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
 H_padded[:, col_idx] = H_formatted
-
+# H_padded = H_formatted
 
 this_time = time.time()
 print("Recovered H matrix: ")
