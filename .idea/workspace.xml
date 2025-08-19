@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Debug ECO_original">
-      <change afterPath="$PROJECT_DIR$/GERCE_onetext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/threshold_analysis.py" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Readme">
+      <change afterPath="$PROJECT_DIR$/data_saver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECO_original.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO_original.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE_permute.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_permute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv/test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_writter.py" beforeDir="false" afterPath="$PROJECT_DIR$/csv_writter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparsifyer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +57,7 @@
     "Python.column_extract_reconstruction.executor": "Run",
     "Python.column_sample_test.executor": "Run",
     "Python.csv_writter.executor": "Run",
+    "Python.data_saver.executor": "Run",
     "Python.dubiner_sparsifyer.executor": "Run",
     "Python.extracter.executor": "Run",
     "Python.fullcode.executor": "Run",
@@ -191,11 +181,26 @@
       <option name="project" value="LOCAL" />
       <updated>1755434362178</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="CSV mesh test update">
+      <option name="closed" value="true" />
+      <created>1755585056067</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1755585056067</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Readme">
+      <option name="closed" value="true" />
+      <created>1755585149781</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1755585149781</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Readme" />
     <MESSAGE value="1,2 bit shift noise and sort by reliability" />
     <MESSAGE value="make full code in one file" />
     <MESSAGE value="Column sampling" />
@@ -203,6 +208,8 @@
     <MESSAGE value="Readme update" />
     <MESSAGE value="ECO original - used for GERCE" />
     <MESSAGE value="Debug ECO_original" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug ECO_original" />
+    <MESSAGE value="CSV mesh test update" />
+    <MESSAGE value="Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme" />
   </component>
 </project>

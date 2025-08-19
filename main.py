@@ -6,6 +6,8 @@ from extracter import *
 from verifier import *
 from formatter import *
 from variables import *
+from dubiner_sparsifyer import *
+from data_saver import *
 
 import time
 start_time = time.time()
@@ -55,6 +57,10 @@ H_extracted = reliability_extraction(H_recovered, A,parity_num)
 
 # 5. Sparsify/Format H matrix -> see if it has diagonal or bi-diagonal format
 H_formatted = diag_format(H_extracted, databit_num)
+# H_formatted = H_extracted # formatting (sparsifying 대체) 을 하지 않으면 아예 찾지 못하는 경우도 있음!
+# H_formatted = sparsify(H_extracted, codeword_len*pooling_factor, codeword_len) # doesnt work since ms > ns (it should be opposite)
+
+save_H_matrix(H_formatted)
 
 if not LARGE_CODE:
     print("recovered H matrix row space")

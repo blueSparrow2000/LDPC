@@ -2,8 +2,8 @@
 Some variables to input
 '''
 import numpy as np
-codeword_len = 1000
-databit_num = 800
+codeword_len = 10
+databit_num = 8
 density = 0.15  # number of ones in a P matrix
 if codeword_len > 500:
     density = 0.08
@@ -21,7 +21,7 @@ if not BGCE: # if GCE, higher the threshold
 
 NOISE_PROB = 0.0001
 
-np.random.seed(seed=6) # 6: erronous seed
+np.random.seed(seed=0) # 6: erronous seed
 # print(threshold)
 
 PRINT_VAR_SETTING = True
