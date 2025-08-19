@@ -16,15 +16,15 @@ numba
 scipy              
 
 ## Files
-- main.py      
+- main.py       
 An executable file that generates LDPC code with random H matrix, and performs ECO to recover H matrix 
-- progressive_reconstruction.py
+- progressive_reconstruction.py       
 An executable file based on paper 'progressive reconstruction of LDPC H matrix ...'
-- column_extract_reconstruction.py
+- column_extract_reconstruction.py       
 An executable file based on paper about 'column extraction method' by Y.ding
-- GERCE.py
+- GERCE.py       
 An implementation of function in column extraction method
-- LDPC_sampler.py      
+- LDPC_sampler.py             
 Randomly generates H matrix and code words corresponding to it 
 - ECO.py      
 Performs fast Elementary Column Operation
@@ -43,12 +43,13 @@ One file that contains everything, used in translation to C code
 
 ## version history
 2025.06.24 Basic LDPC simulation without noise        
-2025.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)
-2025.07.22 ~  2026.07.25 Progressive reconstruction implementation
-2025.07.31 Column extraction method implementation 
-2025.08.13 ECO parallelism to full capacity
-2025.08.17 Debug ECO for GERCE file
-2025.08.19 CSV file saver
+2025.07.03 Add small noise and sort dual vectors by reliability (if more dual vectors are found than n-k, we crop it)       
+2025.07.22 ~  2026.07.25 Progressive reconstruction implementation       
+2025.07.31 Column extraction method implementation        
+2025.08.13 ECO parallelism to full capacity       
+2025.08.17 Debug ECO for GERCE file       
+2025.08.19 CSV file saver       
+       
 
 TODO
 Read the real codeword data and try to recover H matrix
