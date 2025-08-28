@@ -31,18 +31,18 @@ def matmul_f2(m1, m2):
             for k in range(m2.shape[0]):
                 acc ^= m1[i, k] & m2[k, j]
             mr[i, j] = acc
-    return mr.astype(np.int64)
+    return mr.astype(np.uint8)
 
 def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
     # build a generator matrix
-    I = np.identity(k, dtype=np.int64)
+    I = np.identity(k, dtype=np.uint8)
 
     P = scsparse.random(k, n-k, density=density, data_rvs=np.ones)
-    P = P.toarray().astype(np.int64)
+    P = P.toarray().astype(np.uint8)
     generator = np.concatenate((I, P), axis=1) # generator mat
 
     # sample PCM
-    I_prime = np.identity(n-k, dtype=np.int64)
+    I_prime = np.identity(n-k, dtype=np.uint8)
     H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
     #sample message bits - each row is a message bit
@@ -73,7 +73,7 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
         return H, code_words
     elif noise_level==10: # add gaussian noise to code_words matrix
         noise_prob = 0.0001 #0.001 # e-3 scale
-        G_noise = scsparse.random(M, n, density=noise_prob, data_rvs=np.ones).toarray().astype(np.int64)
+        G_noise = scsparse.random(M, n, density=noise_prob, data_rvs=np.ones).toarray().astype(np.uint8)
         # print_arr(G_noise)
         num_of_error_bits = (G_noise==1).sum()
         print("Number of error bits: %d"%num_of_error_bits)
@@ -292,7 +292,7 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 
 
 # 1. apply ECO to A(code word matrix) and get Q, R
-Q_aux = np.identity(codeword_len, dtype=np.int64)
+Q_aux = np.identity(codeword_len, dtype=np.uint8)
 R,Q = ECO(A, Q_aux)
 if not LARGE_CODE:
     print("Result:")

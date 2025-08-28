@@ -8,6 +8,9 @@ from formatter import *
 from variables import *
 from dubiner_sparsifyer import *
 from data_saver import *
+from bit_flip_decoder import ldpc_bitflip_majority_decode
+from data_saver import *
+
 
 import time
 start_time = time.time()
@@ -18,23 +21,31 @@ A fast reconstruction of the parity check matrices of LDPC codes in a noisy envi
 '''
 
 # sample LDPC code word
+read_pre_defined = False
 
-H, A = sample_LDPC(codeword_len,databit_num,density = density,pooling_factor=pooling_factor,noise_level=noise_level)
-
-if not LARGE_CODE:
-    print("H matrix: ")
-    print_arr(H)
-
-    print("Code word matrix: ")
-    print_arr(A)
+H = None
+A = None
+if read_pre_defined:
+    H = read_matrix('H')
+    A = read_matrix('decoded_codeword')
+    print("read pre defined matrix")
 else:
-    print("Code word generated", end=' - ')
+    H, A = sample_LDPC(codeword_len,databit_num,density = density,pooling_factor=pooling_factor,noise_level=noise_level)
+
+    if not LARGE_CODE:
+        print("H matrix: ")
+        print_arr(H)
+
+        print("Code word matrix: ")
+        print_arr(A)
+    else:
+        print("Code word generated", end=' - ')
 
 print(" %s seconds" % round(time.time() - start_time,3))
 
 
 # 1. apply ECO to A(code word matrix) and get Q, R
-Q_aux = np.identity(codeword_len, dtype=np.int64)
+Q_aux = np.identity(codeword_len, dtype=np.uint8)
 R,Q = ECO(A,Q_aux,BGCE=BGCE)#ECO_original(A,Q_aux,BGCE=BGCE)
 if not LARGE_CODE:
     print("Result:")
@@ -60,7 +71,9 @@ H_formatted = diag_format(H_extracted, databit_num)
 # H_formatted = H_extracted # formatting (sparsifying 대체) 을 하지 않으면 아예 찾지 못하는 경우도 있음!
 # H_formatted = sparsify(H_extracted, codeword_len*pooling_factor, codeword_len) # doesnt work since ms > ns (it should be opposite)
 
-save_H_matrix(H_formatted)
+# print("Saving recovered H matrix")
+# save_H_matrix(H_formatted)
+save_image_data(H_formatted)
 
 if not LARGE_CODE:
     print("recovered H matrix row space")

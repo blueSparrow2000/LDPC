@@ -1,0 +1,330 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <omp.h>
+
+/*
+gcc -O3 -fopenmp ldpc.c -o ldpc
+./ldpc
+*/
+
+// === CONFIG ===
+#define N 10               // Codeword length
+#define K 7               // Data bits
+#define POOLING_FACTOR 2
+#define NOISE_LEVEL 0
+#define THRESHOLD (((POOLING_FACTOR - 1) * N) * 0.325)
+#define SEED 1
+
+// === MATRIX UTILS ===
+#define MAT(m, cols, row, col) ((m)[(row) * (cols) + (col)])
+
+int* allocate_flat_matrix(int rows, int cols) {
+    return calloc(rows * cols, sizeof(int));
+}
+
+void print_flat_matrix(int* mat, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", MAT(mat, cols, i, j));
+        }
+        printf("\n");
+    }
+}
+
+void identity_matrix(int* mat, int size) {
+    for (int i = 0; i < size; i++) {
+        MAT(mat, size, i, i) = 1;
+    }
+}
+
+void transpose(int* src, int* dst, int rows, int cols) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            MAT(dst, rows, j, i) = MAT(src, cols, i, j);
+}
+
+void generate_sparse_matrix(int* mat, int rows, int cols, float density) {
+    for (int i = 0; i < rows * cols; i++) {
+        float r = (float)rand() / RAND_MAX;
+        mat[i] = (r < density) ? 1 : 0;
+    }
+}
+
+void matmul_gf2(int* A, int* B, int* result, int rowsA, int colsA, int colsB) {
+    int i;
+#pragma omp parallel for
+    for (i=0; i < rowsA; i++) {
+        for (int j = 0; j < colsB; j++) {
+            int acc = 0;
+            for (int k = 0; k < colsA; k++) {
+                acc ^= (MAT(A, colsA, i, k) & MAT(B, colsB, k, j));
+            }
+            MAT(result, colsB, i, j) = acc;
+        }
+    }
+}
+
+void flip_bit(int* mat, int cols, int row, int col) {
+    MAT(mat, cols, row, col) ^= 1;
+}
+
+// === LDPC CODE GENERATION ===
+void generate_ldpc_code(int** H_out, int** A_out, int k, int n, int m) {
+    int parity = n - k;
+
+    int* I = allocate_flat_matrix(k, k);
+    identity_matrix(I, k);
+
+    int* P = allocate_flat_matrix(k, parity);
+    generate_sparse_matrix(P, k, parity, 0.25f);
+
+    int* G = allocate_flat_matrix(k, n);
+    for (int i = 0; i < k; i++) {
+        memcpy(&MAT(G, n, i, 0), &MAT(I, k, i, 0), k * sizeof(int));
+        memcpy(&MAT(G, n, i, k), &MAT(P, parity, i, 0), parity * sizeof(int));
+    }
+
+    int* PT = allocate_flat_matrix(parity, k);
+    transpose(P, PT, k, parity);
+
+    int* I_p = allocate_flat_matrix(parity, parity);
+    identity_matrix(I_p, parity);
+
+    int* H = allocate_flat_matrix(parity, n);
+    for (int i = 0; i < parity; i++) {
+        memcpy(&MAT(H, n, i, 0), &MAT(PT, k, i, 0), k * sizeof(int));
+        memcpy(&MAT(H, n, i, k), &MAT(I_p, parity, i, 0), parity * sizeof(int));
+    }
+
+    int* M = allocate_flat_matrix(m, k);
+    for (int i = 0; i < m * k; i++) M[i] = rand() % 2;
+
+    int* A = allocate_flat_matrix(m, n);
+    matmul_gf2(M, G, A, m, k, n);
+
+    if (NOISE_LEVEL >= 1) flip_bit(A, n, 0, n - 1);
+    if (NOISE_LEVEL >= 2) flip_bit(A, n, m - 1, n - 1);
+
+    *H_out = H;
+    *A_out = A;
+
+    free(I); free(P); free(G); free(PT); free(I_p); free(M);
+}
+
+// === GF(2) Gaussian Elimination ===
+void gf2elim(int* M, int rows, int cols) {
+    int i = 0, j = 0;
+    while (i < rows && j < cols) {
+        int pivot = -1;
+        for (int k = i; k < rows; k++) {
+            if (MAT(M, cols, k, j)) {
+                pivot = k;
+                break;
+            }
+        }
+        if (pivot == -1) { j++; continue; }
+
+        if (pivot != i) {
+            for (int c = 0; c < cols; c++) {
+                int tmp = MAT(M, cols, i, c);
+                MAT(M, cols, i, c) = MAT(M, cols, pivot, c);
+                MAT(M, cols, pivot, c) = tmp;
+            }
+        }
+
+        int k;
+#pragma omp parallel for
+        for (k = 0; k < rows; k++) {
+            if (k != i && MAT(M, cols, k, j)) {
+                for (int c = j; c < cols; c++) {
+                    MAT(M, cols, k, c) ^= MAT(M, cols, i, c);
+                }
+            }
+        }
+        i++; j++;
+    }
+}
+
+// === ROW SWAP FOR ECO ===
+void row_swap(int* M, int rows, int cols) {
+    int i = 0, j = 0;
+    while (i < rows && j < cols) {
+        if (!MAT(M, cols, i, j)) {
+            int k;
+            for (k = i + 1; k < rows; k++) {
+                if (MAT(M, cols, k, j)) {
+                    for (int c = 0; c < cols; c++) {
+                        int tmp = MAT(M, cols, i, c);
+                        MAT(M, cols, i, c) = MAT(M, cols, k, c);
+                        MAT(M, cols, k, c) = tmp;
+                    }
+                    break;
+                }
+            }
+            if (k == rows) { j++; continue; }
+        }
+        i++; j++;
+    }
+}
+
+// === ECO ===
+void ECO(int* A, int* R, int* Q, int rows, int cols) {
+    row_swap(A, rows, cols);
+
+    int* M = allocate_flat_matrix(cols, rows);
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            MAT(M, rows, j, i) = MAT(A, cols, i, j);
+
+    for (int i = 0; i < cols; i++) MAT(Q, cols, i, i) = 1;
+
+    int i = 0, j = 0;
+    while (i < cols && j < rows) {
+        if (!MAT(M, rows, i, j)) {
+            int k;
+            for (k = i + 1; k < cols; k++) {
+                if (MAT(M, rows, k, j)) {
+                    for (int c = 0; c < rows; c++) {
+                        int tmp = MAT(M, rows, i, c);
+                        MAT(M, rows, i, c) = MAT(M, rows, k, c);
+                        MAT(M, rows, k, c) = tmp;
+
+                        tmp = MAT(Q, cols, i, c);
+                        MAT(Q, cols, i, c) = MAT(Q, cols, k, c);
+                        MAT(Q, cols, k, c) = tmp;
+                    }
+                    break;
+                }
+            }
+            if (k == cols) { j++; continue; }
+        }
+
+        int k;
+#pragma omp parallel for
+        for (k = 0; k < cols; k++) {
+            if (k != i && MAT(M, rows, k, j)) {
+                for (int c = j; c < rows; c++) {
+                    MAT(M, rows, k, c) ^= MAT(M, rows, i, c);
+                }
+                for (int c = 0; c < cols; c++) {
+                    MAT(Q, cols, k, c) ^= MAT(Q, cols, i, c);
+                }
+            }
+        }
+        i++; j++;
+    }
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            MAT(R, cols, i, j) = MAT(M, rows, j, i);
+
+    free(M);
+}
+
+// === SPARSE COLUMN EXTRACTION ===
+void get_sparse_column_idx(int* mat, int rows, int cols, int threshold, bool* idx) {
+    for (int j = 0; j < cols; j++) {
+        int count = 0;
+        for (int i = 0; i < rows; i++) {
+            count += MAT(mat, cols, i, j);
+        }
+        idx[j] = (count <= threshold);
+    }
+}
+
+int* get_sparse_columns(int* Q, bool* idx, int rows, int cols, int* out_cols) {
+    int count = 0;
+    for (int j = 0; j < cols; j++)
+        if (idx[j]) count++;
+
+    *out_cols = count;
+    int* result = allocate_flat_matrix(rows, count);
+
+    int out_j = 0;
+    for (int j = 0; j < cols; j++) {
+        if (!idx[j]) continue;
+        for (int i = 0; i < rows; i++) {
+            MAT(result, count, i, out_j) = MAT(Q, cols, i, j);
+        }
+        out_j++;
+    }
+    return result;
+}
+
+// === DIAGONAL FORMAT ===
+int* diag_format(int* H, int rows, int cols, int databit_num) {
+    int* reordered = allocate_flat_matrix(rows, cols);
+    for (int i = 0; i < rows; i++) {
+        memcpy(&MAT(reordered, cols, i, 0), &MAT(H, cols, i, databit_num), (cols - databit_num) * sizeof(int));
+        memcpy(&MAT(reordered, cols, i, cols - databit_num), &MAT(H, cols, i, 0), databit_num * sizeof(int));
+    }
+
+    gf2elim(reordered, rows, cols);
+
+    int* formatted = allocate_flat_matrix(rows, cols);
+    for (int i = 0; i < rows; i++) {
+        memcpy(&MAT(formatted, cols, i, 0), &MAT(reordered, cols, i, cols - databit_num), databit_num * sizeof(int));
+        memcpy(&MAT(formatted, cols, i, databit_num), &MAT(reordered, cols, i, 0), (cols - databit_num) * sizeof(int));
+    }
+
+    free(reordered);
+    return formatted;
+}
+
+bool check_success(int* A, int* B, int rows, int cols) {
+    for (int i = 0; i < rows * cols; i++) {
+        if (A[i] != B[i]) return false;
+    }
+    return true;
+}
+
+// === MAIN ===
+int main() {
+    srand(SEED);
+
+    int M = POOLING_FACTOR * N;
+    int* H, * A;
+    generate_ldpc_code(&H, &A, K, N, M);
+
+    printf("Original H:\n");
+    print_flat_matrix(H, N - K, N);
+
+    printf("Codewords A:\n");
+    print_flat_matrix(A, M, N);
+
+    int* R = allocate_flat_matrix(M, N);
+    int* Q = allocate_flat_matrix(M, M);
+    ECO(A, R, Q, M, N);
+
+    printf("Reduced matrix:\n");
+    print_flat_matrix(R, N - K, N);
+
+    printf("ECO matrix:\n");
+    print_flat_matrix(Q, N, N);
+
+
+    bool* idx = calloc(M, sizeof(bool));
+    get_sparse_column_idx(R, M, N, (int)THRESHOLD, idx);
+
+    int extracted_cols;
+    int* H_recovered = get_sparse_columns(Q, idx, M, M, &extracted_cols);
+    printf("Recovered H:\n");
+    print_flat_matrix(H_recovered, extracted_cols, N);
+
+    int* H_formatted = diag_format(H_recovered, extracted_cols, N, K);
+
+    printf("Formatted H:\n");
+    print_flat_matrix(H_formatted, extracted_cols, N);
+
+    printf("Success? %s\n", check_success(H, H_formatted, N - K, N) ? "YES" : "NO");
+
+    // Cleanup
+    free(H); free(A); free(R); free(Q);
+    free(H_recovered); free(H_formatted); free(idx);
+    return 0;
+}
+
+
+

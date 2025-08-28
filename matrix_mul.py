@@ -13,4 +13,4 @@ def matmul_f2(m1, m2):
             for k in range(m2.shape[0]):
                 acc ^= m1[i, k] & m2[k, j]
             mr[i, j] = acc
-    return mr.astype(np.int64)
+    return mr.astype(np.uint8)

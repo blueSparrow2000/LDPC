@@ -4,7 +4,7 @@ from gauss_elim import *
 from matrix_mul import matmul_f2
 from prettyprinter import print_arr
 from variables import NOISE_PROB
-
+from data_saver import *
 
 
 '''
@@ -26,17 +26,17 @@ noise_level: amount of noise that simulates bit shift
 
 
 
-def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
+def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0, save_noise_free = False):
     global NOISE_PROB
     # build a generator matrix
-    I = np.identity(k, dtype=np.int64)
+    I = np.identity(k, dtype=np.uint8)
 
     P = scsparse.random(k, n-k, density=density, data_rvs=np.ones)
-    P = P.toarray().astype(np.int64)
+    P = P.toarray().astype(np.uint8)
     generator = np.concatenate((I, P), axis=1) # generator mat
 
     # sample PCM
-    I_prime = np.identity(n-k, dtype=np.int64)
+    I_prime = np.identity(n-k, dtype=np.uint8)
     H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
     #sample message bits - each row is a message bit
@@ -57,6 +57,9 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
             print(code_rank)
             print("[WARNING] generator matrix produces degenerate code!")
 
+    if save_noise_free:
+        save_matrix(code_words , filename='error_free_codeword')
+
     if noise_level==1:  # add one bit noise
         code_words[0,-1] = not code_words[0,-1] # add noise to only the last bit of the first row
         #code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
@@ -66,7 +69,7 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0):
         code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
         return H, code_words
     elif noise_level==10: # add gaussian noise to code_words matrix
-        G_noise = scsparse.random(M, n, density=NOISE_PROB, data_rvs=np.ones).toarray().astype(np.int64)
+        G_noise = scsparse.random(M, n, density=NOISE_PROB, data_rvs=np.ones).toarray().astype(np.uint8)
         # print_arr(G_noise)
         num_of_error_bits = (G_noise==1).sum()
         print("Number of error bits: %d"%num_of_error_bits)

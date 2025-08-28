@@ -9,7 +9,10 @@ ECO matrix E
 '''
 
 @numba.jit(nopython=True, parallel=True)
-def ECO(M,Q, BGCE = True): #Q = None,
+def ECO(M_origin,Q, BGCE = True,debug = False): #Q = None,
+    operation_count = 0
+
+    M = M_origin # M = np.copy(M_origin)
     # 1: row swap
     m1, n1 = M.shape
     i = 0
@@ -22,6 +25,8 @@ def ECO(M,Q, BGCE = True): #Q = None,
                 i += 1
                 j += 1
                 continue
+            if debug:
+                operation_count += 1
             # swap rows
             # M[[k, i]] = M[[i, k]] this doesn't work with numba
             temp = np.copy(M[k])
@@ -48,7 +53,8 @@ def ECO(M,Q, BGCE = True): #Q = None,
             if M[k, j] == 0:  # argmax value is 0
                 j += 1
                 continue
-
+            if debug:
+                operation_count += 1
             # swap rows
             #M[[k, i]] = M[[i, k]] this doesn't work with numba
             temp = np.copy(M[k])
@@ -102,6 +108,9 @@ def ECO(M,Q, BGCE = True): #Q = None,
     # transpose to get column operation matrix and resulting matrix
     M = np.transpose(M)
     Q = np.transpose(Q)
+
+    if debug:
+        print("ECO operation count: ", operation_count)
     return M, Q # returns result and ECO matrix
 #
 # M = np.array([[1,0,0,1],[1,1,1,0],[0,1,0,1]])

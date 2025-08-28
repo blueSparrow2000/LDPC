@@ -1,0 +1,105 @@
+# n=1000, k = 200
+
+# pooling: 5
+- BGCE
+Number of error bits: 500
+Code word generated
+Elapsed time: 2.214 seconds
+ECO complete
+Elapsed time: 11.173 seconds
+Dual vectors missing:  6
+correct guess: 81 / 100
+Success?:  False
+Elapsed time: 12.356 seconds
+
+- GCE
+Number of error bits: 500
+Code word generated
+Elapsed time: 2.177 seconds
+ECO complete
+Elapsed time: 9.84 seconds
+Total dual vectors recovered: 100
+correct guess: 0 / 100
+Success?:  False
+Elapsed time: 11.577 seconds
+
+
+# pooling: 20 
+- BGCE
+Number of error bits: 2000
+Code word generated
+Elapsed time: 6.554 seconds
+ECO complete
+Elapsed time: 39.114 seconds
+Dual vectors missing:  6
+correct guess: 67 / 100
+Success?:  False
+Elapsed time: 40.365 seconds
+
+- GCE
+Number of error bits: 2000
+Code word generated
+Elapsed time: 8.282 seconds
+ECO complete
+Elapsed time: 32.644 seconds
+Total dual vectors recovered: 100
+correct guess: 0 / 100
+Success?:  False
+Elapsed time: 35.524 seconds
+
+
+
+
+##### variable settings ##### seed 6
+(n, k) = (1000, 800)
+Number of code words:  2000
+Threshold:  325
+############################## ECO col swap else
+Number of error bits: 200
+Code word generated -  1.994 seconds
+ECO complete -  11.507 seconds
+Dual vectors missing:  5
+correct guess: 149 / 200
+Success?:  False
+Total elapsed time: 13.603 seconds
+
+########################################## ECO col swap no else
+
+Number of error bits: 200
+Code word generated -  1.605 seconds
+ECO complete -  9.386 seconds
+Dual vectors missing:  5
+correct guess: 149 / 200
+Success?:  False
+Total elapsed time: 11.082 seconds
+
+
+
+##### variable settings ##### seed 0
+(n, k) = (1000, 800)
+Number of code words:  2000
+Threshold:  325
+############################## ECO col swap else
+Number of error bits: 200
+Code word generated -  1.677 seconds
+ECO complete -  10.501 seconds
+Dual vectors missing:  2
+correct guess: 183 / 200
+Success?:  False
+Total elapsed time: 12.429 seconds
+
+########################## ECO col swap no else
+
+Number of error bits: 200
+Code word generated -  1.659 seconds
+ECO complete -  10.836 seconds
+Dual vectors missing:  2
+correct guess: 183 / 200
+Success?:  False
+Total elapsed time: 12.48 seconds
+
+
+
+
+
+

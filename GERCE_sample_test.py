@@ -15,7 +15,7 @@ n = 10
 k = 7
 
 
-I = np.identity(7, dtype=np.int64)
+I = np.identity(7, dtype=np.uint8)
 
 ########## custom generator component P: k x (n-k)
 P = np.array([[1,0,0], [0,1,0], [1,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,0]])
@@ -23,7 +23,7 @@ P = np.array([[1,0,0], [0,1,0], [1,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,0]])
 generator = np.concatenate((I, P), axis=1) # generator mat
 
 # sample PCM
-I_prime = np.identity(n-k, dtype=np.int64)
+I_prime = np.identity(n-k, dtype=np.uint8)
 H = np.concatenate((P.T, I_prime), axis=1) # PCM
 
 #sample message bits - each row is a message bit
@@ -50,7 +50,7 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 
 ######################### Process LDPC code ###########################
 H_formatted = GERCE(sampled_code, 1) # databut_num = 7 / threshold = 3
-# Q_aux = np.identity(codeword_len, dtype=np.int64)
+# Q_aux = np.identity(codeword_len, dtype=np.uint8)
 # R,Q = ECO(sampled_code,Q_aux)
 #
 # # print("Result:")
@@ -75,7 +75,7 @@ H_formatted = GERCE(sampled_code, 1) # databut_num = 7 / threshold = 3
 
 # padding H
 mh, nh = H_formatted.shape
-H_padded = np.zeros((mh, n), dtype=np.int64)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
+H_padded = np.zeros((mh, n), dtype=np.uint8)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
 H_padded[:, col_idx] = H_formatted
 # H_padded = H_formatted
 

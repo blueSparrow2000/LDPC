@@ -41,7 +41,7 @@ for i in range(len(beta_list)):
         tx, ty = H.shape
 
         # 1. apply ECO to A(code word matrix) and get Q, R
-        Q_aux = np.identity(codeword_len, dtype=np.int64)
+        Q_aux = np.identity(codeword_len, dtype=np.uint8)
         R = np.copy(A)
         R, Q = ECO(R, Q_aux, BGCE=BGCE)  # ECO_original(A,Q_aux,BGCE=BGCE)
         ############################### code effected by SEED ##############################

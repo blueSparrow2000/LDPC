@@ -1,0 +1,37 @@
+##### variable settings #####
+(n, k) = (2000, 1800)
+Number of code words:  6000
+Threshold:  1300
+##############################
+Number of error bits: 1200
+Codeword generated: noise is added, so correct  prior codeword number is as follows
+Correct / Total = 4899 / 6000
+
+
+
+######################################################### no parallel 
+failed decoding: 985 / 6000
+Correct codewords after decoding: 
+Correct / Total = 4987 / 6000
+Recovered 88 more correct codewords
+Total elapsed time: 138.547 seconds
+
+
+
+
+######################################################### parallel 
+failed decoding: 985 / 6000
+Correct codewords after decoding: 
+Correct / Total = 4987 / 6000
+Recovered 88 more correct codewords
+Total elapsed time: 97.152 seconds
+
+
+
+
+
+
+
+
+
+

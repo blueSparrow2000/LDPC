@@ -1,5 +1,39 @@
 import numpy as np
 from gauss_elim import gf2elim
+from numba import njit, prange
+
+@njit(parallel=True)
+def compare_matrix(target, source):
+    tx, ty = target.shape
+    sx, sy = source.shape
+    correct_guess = 0
+
+    for i in prange(tx):  # parallel over target rows
+        found = False
+        for j in range(sx):
+            match = True
+            for k in range(ty):
+                if target[i, k] != source[j, k]:
+                    match = False
+                    break
+            if match:
+                found = True
+                break
+        if found:
+            correct_guess += 1
+
+    return correct_guess
+
+# Non parallel version
+
+# def compare_matrix(target, source):
+#     tx, ty = target.shape
+#     correct_guess = 0
+#     for i in range(tx):
+#         if (source == target[i]).all(axis=1).any():
+#             correct_guess += 1
+#     return correct_guess
+
 
 '''
 Compares element wise between two matrix

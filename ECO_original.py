@@ -14,7 +14,7 @@ the original method
 @numba.jit(nopython=True, parallel=True)
 def ECO_original(M,Q, BGCE = True):
     m,n = M.shape # we know m>n (Q is nxn)
-    # L = np.identity(m,dtype=np.int64) # left multiplication matrix (dont need)
+    # L = np.identity(m,dtype=np.uint8) # left multiplication matrix (dont need)
     # print(m,n) m: 2000, n: 1000
     i=0
     j=0

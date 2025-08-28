@@ -41,11 +41,14 @@ Nmin = 100 # parameter determined by v, n and BER (more than 100)
 
 total_iteration = 2 # full iteration number
 
+np.random.seed() # randomize
+
 while mainIter<total_iteration:
     kappa_old = kappa
 
     for i in range(Nmin):
         col_indices = sample_col_indices(A, v)
+        # print(col_indices[:5])
         Mv = A[:, col_indices]
         Hv = GERCE(Mv,Niter= Niter)
         mv,nv = Hv.shape
@@ -56,7 +59,7 @@ while mainIter<total_iteration:
         # print_arr(b)
 
         # zero pad Hv to form PCM in dim n space
-        H_pad = np.zeros((mv, codeword_len), dtype=np.int64)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
+        H_pad = np.zeros((mv, codeword_len), dtype=np.uint8)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
         H_pad[:, col_indices] = Hv
 
         for j in range(mv): # for each recovered dual vectors

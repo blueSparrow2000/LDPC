@@ -1,0 +1,44 @@
+##### variable settings #####
+(n, k) = (1000, 800)
+Number of code words:  1000
+Threshold:  0
+##############################
+
+ - When using half of parity check vectors
+
+Number of error bits: 100
+failed decoding:  75 -> 디코딩 성공했다 판단한것 중 실패한것들이 있음 
+Correct / Total = 912 / 1000
+Total elapsed time: 5.59 seconds
+
+ - When using all the parity check vectors 
+Number of error bits: 100
+failed decoding:  82 -> 디코딩 성공했다 판단한것들은 다 성공한것
+Correct / Total = 918 / 1000 -> 참인 패러티 매트릭스를 아는데 200개 중 18개만 디코딩 성공했다.. 이게 말이 되나? 너무 strict한가? 
+Total elapsed time: 13.207 seconds
+
+
+- all parity, with tolerance 2 bits (원래보다 2비트 정도 늘어나도 디코딩 성공한 것으로 본다)
+Number of error bits: 100
+failed decoding:  74
+Correct / Total = 926 / 1000
+Total elapsed time: 11.123 seconds
+
+=> 여기서 더 늘린다고 되진 않음
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,9 +11,10 @@ Final goal is to fully recover Parity Check Matrix(H) of a NAND flash memory
 ## Installations
 This project is based on python. Below are the packages that needs to be installed:
 
-numpy      
-numba      
-scipy              
+numpy                     
+numba                     
+scipy                   
+matplotlib                   
 
 ## Files
 - main.py       
@@ -49,11 +50,14 @@ One file that contains everything, used in translation to C code
 2025.08.13 ECO parallelism to full capacity       
 2025.08.17 Debug ECO for GERCE file       
 2025.08.19 CSV file saver       
+2025.08.20 QC LDPC generator      
+2025.08.25 ~ 2025.08.27 Add iterative decoder               
+2025.08.28 all matrix are changed from np.int64 into np.uint8                
        
 
-TODO
-Read the real codeword data and try to recover H matrix
-Find optimal beta value
+TODO               
+Read the real codeword data and try to recover H matrix               
+Find optimal beta value               
 
 
 ## License
