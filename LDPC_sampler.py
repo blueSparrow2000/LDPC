@@ -63,20 +63,18 @@ def sample_LDPC(n,k, density = 0.05, pooling_factor = 2,noise_level = 0, save_no
     if noise_level==1:  # add one bit noise
         code_words[0,-1] = not code_words[0,-1] # add noise to only the last bit of the first row
         #code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
-        return H, code_words
     elif noise_level==2: # add two bit noise
         code_words[0,-1] = not code_words[0,-1] # add noise to only the last bit of the first row
         code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
-        return H, code_words
     elif noise_level==10: # add gaussian noise to code_words matrix
         G_noise = scsparse.random(M, n, density=NOISE_PROB, data_rvs=np.ones).toarray().astype(np.uint8)
         # print_arr(G_noise)
         num_of_error_bits = (G_noise==1).sum()
         print("Number of error bits: %d"%num_of_error_bits)
         code_words = code_words^G_noise
-        return H, code_words
 
     return H, code_words
+
 
 
 # H, A = sample_LDPC(5,3)

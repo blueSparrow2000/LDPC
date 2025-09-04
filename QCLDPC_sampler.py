@@ -25,8 +25,11 @@ This generator approximates NAND-style designs (irregular QC-LDPC, high rate). A
 If you tell me a target n (final code length) and target rate, I can show you concrete mb, nb, Z choices and produce a sample H you can test with your decoder.
 """
 import numpy as np
+from gauss_elim import *
+from matrix_mul import matmul_f2
+from variables import NOISE_PROB
 from data_saver import *
-
+from formatter import diag_format
 
 # Optional: SciPy for sparse matrix output
 try:
@@ -311,17 +314,76 @@ def generate_nand_qc_ldpc(
     H = build_qc_ldpc_array(B, S, Z)
     return H, B, S
 
+def get_codewords(generator,n, k,pooling_factor = 2,noise_level = 0,save_noise_free = False):
+    global NOISE_PROB
+    #sample message bits - each row is a message bit
+    M = round(pooling_factor * n)  # 10 messages
+    message_bits = np.random.choice([0, 1], size=(M,k), p=[1./2, 1./2]) #  np.identity(k, dtype=int)
+
+    ################################## matmul needs to be faster only here ###############################################
+    code_words = matmul_f2(message_bits, generator) # message_bits@generator
+    ################################## matmul needs to be faster only here ###############################################
+
+    message_rank = np.linalg.matrix_rank(message_bits)
+    code_rank = np.linalg.matrix_rank(code_words)
+    if k > code_rank:
+        if k> message_rank:
+            print(message_rank)
+            print("[WARNING] message rank too small! need more data")
+        else:
+            print(code_rank)
+            print("[WARNING] generator matrix produces degenerate code!")
+
+    if save_noise_free:
+        save_matrix(code_words , filename='error_free_codeword')
+
+    if noise_level==1:  # add one bit noise
+        code_words[0,-1] = not code_words[0,-1] # add noise to only the last bit of the first row
+        #code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
+    elif noise_level==2: # add two bit noise
+        code_words[0,-1] = not code_words[0,-1] # add noise to only the last bit of the first row
+        code_words[-1, - 1] = not code_words[-1,- 1]  # add noise to only the last bit of the last row
+    elif noise_level==10: # add gaussian noise to code_words matrix
+        G_noise = sp.random(M, n, density=NOISE_PROB, data_rvs=np.ones).toarray().astype(np.uint8)
+        # print_arr(G_noise)
+        num_of_error_bits = (G_noise==1).sum()
+        print("Number of error bits: %d"%num_of_error_bits)
+        code_words = code_words^G_noise
+
+    return code_words
+
+
+def get_generator(H,k):
+    I = np.identity(k, dtype=np.uint8)
+    H_diag = diag_format(H, k) # ECO 에서 degenerate가 나오면, 즉 0인 row가 나오면 없애버리기 때문에 이래된다
+    if (H.shape[0] != H_diag.shape[0]):
+        raise Exception("H has degenerate rows! There are zero rows after applying ECO to H!")
+    P = H_diag[:,:k] # front part
+    # print(P.shape)
+    generator = np.concatenate((I, P.T), axis=1)  # generator mat
+    return generator
+
+
 # -------------------------
 # Example usage
 # -------------------------
-if __name__ == "__main__":
+if __name__ == "__main__1":
     # Example: produce a small-ish NAND-like code for experimentation
     mb = 4          # base checks
     nb = 16         # base vars -> base rate ~ 0.9
     Z = 64           # lifting factor (choose 64,128,256,...)
+    '''
+    About size of Z
+    https://www.sciencedirect.com/topics/computer-science/block-size-b
+    
+    block size Z 는 6144 ~ 8192정도가 좋으며(nand flash) 보통 power of 2 (2^n)으로 한다
+    '''
     target_rate = 1 - mb/nb
 
     H, B, S = generate_nand_qc_ldpc(mb=mb, nb=nb, Z=Z, target_rate=target_rate, rng=1234, sparse=True)
+    n = nb*Z
+    k = n - mb*Z
+
 
     print("Base size (mb x nb):", B.shape)
     print("Lifting Z:", Z)
@@ -332,8 +394,7 @@ if __name__ == "__main__":
     print("S (first 8 rows/cols):")
     print(S[:8, :16])
 
-    n = nb*Z
-    k = n - mb*Z
+
     save_image_data(H, filename="n_{}_k_{}".format(n,k))
 
 

@@ -1,0 +1,33 @@
+##### variable settings #####
+(n, k) = (4000, 3600)
+Number of code words:  20000
+Threshold:  5200
+##############################
+Number of error bits: 8000
+Correct / Total = 13452 / 20000
+Code word generated -  591.581 seconds
+
+##############################
+Iterative Decoding Loop  1
+ECO operation count:  3955
+ECO complete -  1047.965 seconds
+Decoding complete -  1053.504 seconds
+Correct / Total = 13452 / 20000
+Dual vectors missing:  400
+correct guess: 0 / 400
+Success?:  False
+Total elapsed time: 1232.795 seconds
+
+
+##############################
+Iterative Decoding Loop  2
+ECO operation count:  3955
+ECO complete -  1698.241 seconds
+Decoding complete -  1698.483 seconds
+Correct / Total = 13452 / 20000
+Dual vectors missing:  400
+correct guess: 0 / 400
+Success?:  False
+Total elapsed time: 1945.394 seconds
+
+Performance stopped improving. Quitting

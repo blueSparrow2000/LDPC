@@ -7,7 +7,6 @@ from variables import *
 from submatrix_sampling import *
 from dubiner_sparsifyer import sparsify
 
-
 import time
 start_time = time.time()
 

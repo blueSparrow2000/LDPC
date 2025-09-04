@@ -7,23 +7,29 @@ import random
 '''
 This is an implementation of algorithm 1 in paper "Progressive reconstruction of qc ldpc ..."
 
+Hyper parameter (not shown in the paper)
+W_th : weight threshold - for QC LDPC code with unkown w, how can we determine w value?
+d_s  : how strictly to bucket the codes
+N_iter (can be approximately calculated)
 
+문제 => 답이 아닌 vector가 많이 찾아진다. 
+column swap을 해도 되는것인가!
 '''
-
+ #
 def get_w_th():
     global density, databit_num
     return (density*databit_num)  # weight threshold
 
 def get_N_iter():
     global databit_num, codeword_len
-    return 100#codeword_len-databit_num # approximate to n-k
+    return 1000#codeword_len-databit_num # approximate to n-k
 
 def sparsify(Hs, ms,ns, column_swap = True):
     ds = round(ms/2) # hashing 강도
-    w_th= get_w_th()
+    w_th= 12 + 2#get_w_th()
     Niter = get_N_iter()
-    if not column_swap:
-        Niter = 1
+    # if not column_swap:
+    #     Niter = 1
 
     Hr = []
 

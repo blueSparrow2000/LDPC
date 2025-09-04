@@ -301,3 +301,46 @@ def recover_qc_base_from_rowspace_numba(H_raw, Z, try_pairwise_xor=True, max_pai
                 B[gi, bj] = -2
 
     return True, B, found_bases, "success"
+
+
+
+'''
+QC base matrix 형태를 H matrix 형태로 바꿔준다 
+'''
+def expand_qc_base(B, Z):
+    """
+    Expand a QC base matrix B (shifts) into the full binary parity-check matrix H.
+
+    Parameters
+    ----------
+    B : (Mb x Nb) ndarray of int
+        Base matrix produced by qc_ldpc_format or designed by hand:
+          - entries >= 0: shift value (0..Z-1)
+          - entry == -1: zero block
+          - entry == -2: non-circulant/invalid block -> treated as zero (or you can raise)
+    Z : int
+        Circulant/block size
+
+    Returns
+    -------
+    H : (Mb*Z x Nb*Z) ndarray of {0,1}
+    """
+    B = np.asarray(B, dtype=int)
+    Mb, Nb = B.shape
+    M, N = Mb * Z, Nb * Z
+    H = np.zeros((M, N), dtype=np.int64)
+
+    for bi in range(Mb):
+        for bj in range(Nb):
+            val = B[bi, bj]
+            if val < 0:
+                # -1: zero block, -2: invalid; skip (leave zeros)
+                continue
+            s = int(val) % Z
+            # fill block with circulant permutation: row r has a 1 at column (s + r) % Z
+            r0 = bi * Z
+            c0 = bj * Z
+            for r in range(Z):
+                H[r0 + r, c0 + ((s + r) % Z)] = 1
+    return H
+

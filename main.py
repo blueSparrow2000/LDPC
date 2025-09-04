@@ -21,14 +21,19 @@ A fast reconstruction of the parity check matrices of LDPC codes in a noisy envi
 '''
 
 # sample LDPC code word
-read_pre_defined = False
+read_pre_defined = True
 
 H = None
 A = None
 if read_pre_defined:
     H = read_matrix('H')
     A = read_matrix('decoded_codeword')
-    print("read pre defined matrix")
+    print("Reading dimensions")
+    mh,nh = H.shape
+    m,n = A.shape
+    print("H shape: {} x {}".format(mh,nh))
+    print("A shape: {} x {}".format(m,n))
+    print("read pre defined matrix", end=' - ')
 else:
     H, A = sample_LDPC(codeword_len,databit_num,density = density,pooling_factor=pooling_factor,noise_level=noise_level)
 

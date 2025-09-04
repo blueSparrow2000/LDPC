@@ -50,6 +50,37 @@ def save_image_data(H, filename=None):
 
 
 
+# this is to exaggerate the difference
+def save_error_image(A, diff, mode = 'stripes'):
+    m,n = A.shape
+    if mode == 'stripes':
+        for i in range(m):
+            error = False
+            for j in range(n):
+                if diff[i,j]:
+                    error = True
+                    break
+            if error:
+                for j in range(n):
+                    diff[i, j] = 1
+        save_image_data(diff, filename="recovery_diff_stripes")
+
+    elif mode=='blob':  # increase dot size => 3x3
+        blob_radius = 2
+        blob = np.zeros((m,n), dtype=np.uint8)
+        for i in range(m):
+            for j in range(n):
+                if diff[i,j]:
+                    i_min = max(0,i-blob_radius)
+                    i_max = min(i+blob_radius+1, m)
+                    j_min = max(0,j-blob_radius)
+                    j_max = min(j+blob_radius+1, n)
+                    for bi in range(i_min,i_max):
+                        for bj in range(j_min, j_max):
+                            blob[bi,bj] = 1
+        save_image_data(blob, filename="recovery_diff_blob")
+
+
 
 
 

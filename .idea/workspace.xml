@@ -4,31 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Added data saver (parity check matrix into txt file)">
-      <change afterPath="$PROJECT_DIR$/QCLDPC_double_diag_sampler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QCLDPC_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QCLDPC_recover_GPT.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QCLDPC_sampler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bit_flip_decoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bit_flip_decoder_parallel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bit_flip_decoder_sequential.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iterative_decoding_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="c4e18212-8efe-4d36-a7ea-d241a2cb9ef1" name="변경" comment="Revisit progressive reconstruction">
+      <change afterPath="$PROJECT_DIR$/H_saves/4k test/decoded_codeword.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/4k test/error_free_codeword.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/4k test/noisy_codeword.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/4k test/recovery_diff_blob.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/n_1024_k_768.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/n_144_k_80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/noisy_codeword.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/recovered_qc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/H_saves/recovery_diff_blob.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LDPC tests/4k.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LDPC tests/LDPC test C.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QC_progressive_reconstruction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/block_recover.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECO.py" beforeDir="false" afterPath="$PROJECT_DIR$/ECO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE_permute.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_permute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GERCE_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GERCE_sample_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/H.txt" beforeDir="false" afterPath="$PROJECT_DIR$/H_saves/H.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/decoded_codeword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/H_saves/decoded_codeword.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/error_free_codeword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/H_saves/error_free_codeword.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_1000_k_800.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_1000_k_800.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_100_k_80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_100_k_90.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_10_k_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/H_saves/n_10_k_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LDPC tests/LDPC test.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/LDPC_sampler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QCLDPC_sampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/QCLDPC_sampler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/column_extract_reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/column_extract_reconstruction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_saver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dubiner_sparsifyer.py" beforeDir="false" afterPath="$PROJECT_DIR$/dubiner_sparsifyer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/formatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/formatter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iterative_decoding_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/iterative_decoding_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparsifier_py.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submatrix_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/submatrix_sampling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progressive_reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/progressive_reconstruction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/verifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +86,11 @@
     &quot;Python.GERCE_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.LDPC_sampler.executor&quot;: &quot;Run&quot;,
     &quot;Python.QCLDPC_sampler.executor&quot;: &quot;Run&quot;,
+    &quot;Python.QC_progressive_reconstruction.executor&quot;: &quot;Run&quot;,
     &quot;Python.bit_flip_decode_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.bit_flip_decoder.executor&quot;: &quot;Run&quot;,
     &quot;Python.bit_flip_decoder_parallel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.block_recover.executor&quot;: &quot;Run&quot;,
     &quot;Python.column_extract_reconstruction.executor&quot;: &quot;Run&quot;,
     &quot;Python.column_sample_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.csv_writter.executor&quot;: &quot;Run&quot;,
@@ -230,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755592043237</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Iterative decoder &#10;Type is now np.uint8">
+      <option name="closed" value="true" />
+      <created>1756343595081</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1756343595081</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -244,6 +265,8 @@
     <MESSAGE value="CSV mesh test update" />
     <MESSAGE value="Readme" />
     <MESSAGE value="Added data saver (parity check matrix into txt file)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added data saver (parity check matrix into txt file)" />
+    <MESSAGE value="Iterative decoder &#10;Type is now np.uint8" />
+    <MESSAGE value="Revisit progressive reconstruction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revisit progressive reconstruction" />
   </component>
 </project>

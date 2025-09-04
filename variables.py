@@ -2,8 +2,19 @@
 Some variables to input
 '''
 import numpy as np
-codeword_len = 1000
-databit_num = 900
+
+############################## for QC LDPC ############################
+mb = 4#4  # base checks -> related to parity vectors
+nb = 16# 9 #16  # base vars -> base rate ~ 0.9
+Z = 64# 16#64  # lifting factor (choose 64,128,256,...)
+target_rate = 1 - mb / nb
+codeword_len = nb * Z
+databit_num = codeword_len - mb * Z
+############################## for QC LDPC ############################
+
+# codeword_len = 2000
+# databit_num = 1800
+
 density = 0.15  # number of ones in a P matrix
 if codeword_len > 500:
     density = 0.08
@@ -21,7 +32,7 @@ if not BGCE: # if GCE, higher the threshold
 
 NOISE_PROB = 0.0001#0.0001# 0.0001
 
-np.random.seed(seed=6) # 6: erronous seed
+np.random.seed(seed=0) # 6: erronous seed
 # print(threshold)
 
 PRINT_VAR_SETTING = True

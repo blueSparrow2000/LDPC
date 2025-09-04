@@ -53,7 +53,7 @@ One file that contains everything, used in translation to C code
 2025.08.20 QC LDPC generator      
 2025.08.25 ~ 2025.08.27 Add iterative decoder               
 2025.08.28 all matrix are changed from np.int64 into np.uint8                
-       
+2025.09.05 revisit progressive reconstruction       
 
 TODO               
 Read the real codeword data and try to recover H matrix               
