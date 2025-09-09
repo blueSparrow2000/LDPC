@@ -4,6 +4,7 @@ from ECO_original import *
 from extracter import *
 from variables import threshold, parity_num,databit_num
 from formatter import diag_format
+from gauss_elim import gf2elim
 
 def permute(M,Q):
     m, n = M.shape
@@ -17,7 +18,7 @@ def permute(M,Q):
 '''
 Not tested. Should test this function!
 '''
-def GERCE(M, Niter = 1):
+def GERCE(M, Niter = 1, QCLDPC = False, use_ECO = True):
     global databit_num, threshold
     m, n = M.shape
     parity_num = n-databit_num
@@ -40,20 +41,21 @@ def GERCE(M, Niter = 1):
         # 3. after collecting n-k such columns of Q, transpose it to form H
         H_recovered = get_sparse_columns(Q, idx).T
 
-        # 4. extract n-k dual vectors if more than one vector is considered to be sparse
-        # H_extracted = reliability_extraction(H_recovered, M, parity_num) # reliability extraction 에는 원래의 행렬을 넣어야 함!
-        H_extracted = H_recovered # skip reliability extraction (since it costs a lot)
+        # skip reliability extraction (since it costs a lot)
 
-        ############################### Formatting is different for QC LDPC codes #############################
-        H_formatted = diag_format(H_extracted, databit_num)
-        ############################### Formatting is different for QC LDPC codes #############################
+        # formatting 은 padding한 다음에 해야한다! 그래서 잘 안됐구나
+        # if QCLDPC:
+        #     H_formatted = H_extracted
+        # else:
+        #     H_formatted = diag_format(H_extracted, databit_num)
+
 
         if H is None: # first loop
-            H = H_formatted
+            H = H_recovered
             # cur_rank = np.linalg.matrix_rank(H) ### rank calculation ###
         else:
             ### rank calculation ###
-            # for h in H_formatted:
+            # for h in H_recovered:
             #     Htemp = np.append(H, [h], axis = 0)
             #     if np.linalg.matrix_rank(Htemp) > cur_rank: # increase rank
             #         H = np.append(H, [h], axis=0) #add h into H
@@ -61,7 +63,7 @@ def GERCE(M, Niter = 1):
             ### rank calculation ###
 
             ### original code ###
-            H = np.concatenate((H,H_formatted), axis = 0)
+            H = np.concatenate((H,H_recovered), axis = 0)
             ### original code ###
 
         # if H.shape[0] >= parity_num:

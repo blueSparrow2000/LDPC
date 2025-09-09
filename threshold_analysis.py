@@ -73,7 +73,6 @@ for i in range(len(beta_list)):
         recovery_ratio += round(100*correct_guess/tx, 1)/SEEDTESTAMOUNT
 
     datarow = [beta,round(found_ratio,1) ,round(recovery_ratio,1) ]
-
     save_recovery_data_row_csv(datarow)
 
     # print("Success?: ", check_success(H,H_formatted))

@@ -61,26 +61,30 @@ def make_nand_like_col_degrees(nb, mb, target_rate=0.93, avg_col_w=None, rng=Non
     """
     rng = np.random.default_rng(rng)
     if avg_col_w is None:
-        avg_col_w = 3.0  # NAND often uses low-weight variable nodes but some heavier ones
+        avg_col_w = 1.0  # NAND often uses low-weight variable nodes but some heavier ones
 
     # We'll create a mixture distribution:
-    #   - 50-70% columns weight 2
-    #   - 20-40% columns weight 3
-    #   - 5-15% columns weight 4-8
-    p2 = 0.6
-    p3 = 0.3
+    #   - 50-70% columns weight 0
+    #   - 50-70% columns weight 1
+    #   - 20-40% columns weight 2
+    #   - 5-15% columns weight 3-6
+    p1 = 0.1
+    p2 = 0.4
+    p3 = 0.4
     phigh = 0.1
 
     degs = []
     for _ in range(nb):
         r = rng.random()
-        if r < p2:
+        if r < p1:
+            d = 0
+        elif r < p1 + p2:
+            d = 1
+        elif r < p1 + p2 + p3:
             d = 2
-        elif r < p2 + p3:
-            d = 3
         else:
-            # heavy tail 4..min(8,mb)
-            d = rng.integers(4, min(8, mb) + 1)
+            # heavy tail 3..min(6,mb)
+            d = rng.integers(3, min(6, mb) + 1)
         # cap by mb
         d = min(d, mb)
         degs.append(int(d))
@@ -257,7 +261,7 @@ def build_qc_ldpc_array(B, S, Z):
 # -------------------------
 def generate_nand_qc_ldpc(
     mb=None, nb=None, Z=128, target_rate=0.93, nb_auto=50, mb_auto=None,
-    avg_col_w=3.0, rng=None, sparse=True, col_degrees=None
+    avg_col_w=None, rng=None, sparse=True, col_degrees=None
 ):
     """
     Generate a NAND-like QC-LDPC.

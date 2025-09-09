@@ -31,20 +31,47 @@ save_error_image(A, diff, mode = 'blob')
 
 # remove_error(A,diff)
 '''
-H_recovered = np.array([[1,0,0],[0,1,0]])
-H = None
-for dual_vector in H_recovered:
-    shifts = np.array([[1,0,0],[0,1,0]]) # shift해서 블럭 개수 늘리기
+from prettyprinter import *
+from LDPC_sampler import *
+from QCLDPC_sampler import *
+from submatrix_sampling import *
+from dubiner_sparsifyer import sparsify
+from block_recover import *
+from LDPC_sampler import *
+from verifier import *
+from formatter import *
+from data_saver import *
+from csv_writter import *
+from bit_flip_decoder_sequential import ldpc_bitflip_seqdecode_numba
 
-    if H is None:
-        H = np.array(shifts)
-    else:
-        H = np.concatenate((H,shifts), axis = 0)
+from numba import njit, prange
 
-print(H)
+import time
+start_time = time.time()
+
+#
+# error_free = True
+# if error_free:
+#     noise_level = 0
+#
+# # 1. sample LDPC code word
+# H, B, S = generate_nand_qc_ldpc(mb=mb, nb=nb, Z=Z, target_rate=target_rate, rng=1234, sparse=True) #
+# # print(H.shape)
+# H_diag = diag_format(H, databit_num)
+#
+# H_permute = np.random.permutation(H)
+#
+# save_image_data(H, "H_original")
+# save_image_data(H_permute, "QCLDPC_permuted")
+# save_image_data(H_diag, "QCLDPC_diag_format")
 
 
-
-
-
-
+###### parallel execution numba test #####
+# @njit(parallel=True)
+# def test_numba():
+#     for t in prange(10):
+#         hash_vec = np.random.randint(0, 2, size=10)  # random hash
+#         print(hash_vec)
+#
+#
+# test_numba()

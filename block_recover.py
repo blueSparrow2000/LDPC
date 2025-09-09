@@ -32,7 +32,7 @@ def qc_global_cyclic_shifts_numba(vec, p):
         raise ValueError("Vector length must be multiple of block size p")
     num_blocks = n // p
 
-    shifts = np.zeros((p, n), dtype=np.int64)
+    shifts = np.zeros((p, n), dtype=np.uint8)
 
     for s in prange(p):  # shift amount
         for b in range(num_blocks):  # block index
@@ -43,6 +43,29 @@ def qc_global_cyclic_shifts_numba(vec, p):
 
     return shifts
 
+def get_block_candidates(H_recovered, codeword_len, Z):
+    # check block distances => there should be only one 1 per row in a block -> hence there should not be 1's in the same block range
+    H_candidate = []
+    if H_recovered is None:
+        # print("No vector is recovered!")
+        return H_candidate
+
+    for i in range(len(H_recovered)):
+        add_vector = True
+        h = H_recovered[i]
+        # check whether there exists multiple 1's in a block, if so, delete it
+        num_blocks_per_row = int(codeword_len/Z)
+        for p in range(num_blocks_per_row):
+            row_block = h[p*Z:(p+1)*Z]
+            if sum(row_block) > 1: # invalid vector!
+                add_vector = False # remove such vector
+        if add_vector:
+            H_candidate.append(h)
+
+    return H_candidate
+
+
+# small test example
 if __name__ == "__main__1":
     p = 4
     n = 4 * p

@@ -33,11 +33,11 @@ print("Elapsed time: %s seconds" % round(time.time() - start_time,3))
 Niter = 10 # number permutation iteration in GERCE
 kappa = 0 # num_dual_vectors
 mainIter = 0
-v = round(codeword_len/2) # codeword_len #  # col_extract_num
+v = codeword_len #round(codeword_len/2) # codeword_len #  # col_extract_num
 vmin = 0
 H_final = None  # currently found dual vectors
 
-Nmin = 100 # parameter determined by v, n and BER (more than 100)
+Nmin = 1#100 # parameter determined by v, n and BER (more than 100)
 
 total_iteration = 2 # full iteration number
 
@@ -53,6 +53,10 @@ while mainIter<total_iteration:
         Hv = GERCE(Mv,Niter= Niter)
         mv,nv = Hv.shape
 
+        # print("GERCE complete")
+        # print("Elapsed time: %s seconds" % round(time.time() - start_time, 3))
+        # print("Got {} vectors".format(mv))
+
         # print("sampled columns")
         # b = np.zeros(shape=(codeword_len,), dtype=np.int8)
         # b[col_indices] = 1
@@ -61,6 +65,7 @@ while mainIter<total_iteration:
         # zero pad Hv to form PCM in dim n space
         H_pad = np.zeros((mv, codeword_len), dtype=np.uint8)  # H_recovered = np.zeros((ns-ms,codeword_len), dtype=int)
         H_pad[:, col_indices] = Hv
+
 
         for j in range(mv): # for each recovered dual vectors
             h = H_pad[j] # a dual vector

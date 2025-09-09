@@ -25,9 +25,6 @@ H, A = sample_LDPC(codeword_len,databit_num,density = density,pooling_factor=poo
 if not LARGE_CODE:
     print("H matrix: ")
     print_arr(H)
-
-    # print("Code word matrix: ")
-    # print_arr(A)
 else:
     print("Code word generated")
 

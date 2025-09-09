@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def print_arr(M):
     if len(list(M.shape))==1: # 1D array
         print(' '.join(map(str, M)))

@@ -1,16 +1,6 @@
 import csv
 from variables import * # need variables for filename
 
-data = [
-    ['id', 'name', 'price', 'amount'],
-    ['1', 'apple', '5000', '5'],
-    ['2', 'pencil', '500', '42'],
-    ['3', 'pineapple', '8000', '5'],
-    ['4', 'pen', '1500', '10']
-]
-
-
-
 def write_csv_row(filename, datarow):
     with open('csv/%s.csv'%filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
