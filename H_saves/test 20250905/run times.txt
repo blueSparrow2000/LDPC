@@ -1,0 +1,82 @@
+##### variable settings #####
+(n, k) = (1024, 768)
+Number of code words:  3072
+Threshold:  666
+##############################
+Code word generated
+Correct / Total = 2773 / 3072
+Elapsed time: 1.593 seconds
+
+##############################
+Iterative Decoding Loop  1
+Submatrix sampled 1.601 seconds
+Gauss elimination 5.384 seconds
+Dubiner sparsification 87.191 seconds
+block constraint checking 87.191 seconds
+New vector's rank checking 87.205 seconds
+Decoding complete -  93.549 seconds
+Correct / Total = 2773 / 3072
+Dual vectors missing:  255
+correct guess: 1 / 256
+Success?:  False
+Total elapsed time: 93.881 seconds
+
+##############################
+Iterative Decoding Loop  2
+Submatrix sampled 93.885 seconds
+Gauss elimination 95.792 seconds
+Dubiner sparsification 152.926 seconds
+block constraint checking 152.926 seconds
+New vector's rank checking 152.937 seconds
+Decoding complete -  152.946 seconds
+Correct / Total = 2773 / 3072
+Dual vectors missing:  254
+correct guess: 2 / 256
+Success?:  False
+Total elapsed time: 152.961 seconds
+
+##############################
+Iterative Decoding Loop  3
+Submatrix sampled 152.963 seconds
+Gauss elimination 153.491 seconds
+Dubiner sparsification 217.664 seconds
+block constraint checking 217.664 seconds
+New vector's rank checking 217.664 seconds
+Decoding complete -  217.675 seconds
+Correct / Total = 2773 / 3072
+Dual vectors missing:  253
+correct guess: 3 / 256
+Success?:  False
+Total elapsed time: 217.69 seconds
+
+##############################
+Iterative Decoding Loop  4
+Submatrix sampled 217.693 seconds
+Gauss elimination 218.287 seconds
+Dubiner sparsification 279.908 seconds
+block constraint checking 279.908 seconds
+New vector's rank checking 279.909 seconds
+Decoding complete -  279.919 seconds
+Correct / Total = 2775 / 3072
+Dual vectors missing:  252
+correct guess: 4 / 256
+Success?:  False
+Total elapsed time: 279.936 seconds
+
+##############################
+Iterative Decoding Loop  5
+Submatrix sampled 279.938 seconds
+Gauss elimination 280.54 seconds
+Dubiner sparsification 336.545 seconds
+block constraint checking 336.545 seconds
+New vector's rank checking 336.545 seconds
+Decoding complete -  336.555 seconds
+Correct / Total = 2775 / 3072
+Dual vectors missing:  251
+correct guess: 5 / 256
+Success?:  False
+Total elapsed time: 336.57 seconds
+
+Dual vectors missing:  251
+correct guess: 5 / 256
+Success?:  False

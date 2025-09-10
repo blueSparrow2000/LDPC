@@ -26,6 +26,7 @@ skip_generation = True
 error_free = False #False
 get_all_block_shifts = True #True
 use_gauss_elim = False
+recovered_data_mode = 'w' # 'w': write mode / 'a': append mode, add recovered PCM into existing H file
 
 if error_free:
     noise_level = 0
@@ -59,17 +60,21 @@ vmin = 0
 
 Nmin = 50 #100 # parameter determined by v, n and BER (more than 100)
 GERCE_iter = 1 # number permutation iteration in GERCE - pass in 1 => dont permute
-total_iteration = 4 # full iteration number - decoding is done this amount
+total_iteration = 10 # full iteration number - decoding is done this amount
 
 mainIter = 0
 
-np.random.seed(1) # randomize
+np.random.seed(2) # randomize
 
 H_final = None  # currently found dual vectors
+H_final_blocks = None # recovered 'blocks', generated from H_final
 H_recovered = None
 decoding_codeword_matrix = np.copy(A)
 
 while mainIter<total_iteration:
+    # this vector is used for only block shift purposes
+    newerly_recovered_vec = None # keep track of number of recovered vectors in a total loop
+
     for i in range(Nmin):
         if (i+1)%10 == 0: # show every 10th iteration count
             print("{}th iteration".format(i+1))
@@ -115,16 +120,23 @@ while mainIter<total_iteration:
             if H_recovered is None:
                 H_recovered = np.array([h]) # initial vector
                 kappa += 1
+
+                newerly_recovered_vec = np.array([h])  # initial vector
                 continue
             Htemp = np.append(H_recovered, [h], axis = 0)
             if np.linalg.matrix_rank(Htemp) > kappa: # increase rank
                 H_recovered = np.append(H_recovered, [h], axis=0) #add h into H
                 kappa += 1
 
+                if newerly_recovered_vec is None:
+                    newerly_recovered_vec = np.array([h])  # initial vector
+                else:
+                    newerly_recovered_vec = np.append(newerly_recovered_vec, [h], axis=0)  # add h into H
+
     # 7. recover blocks
     if get_all_block_shifts:
-        if not (H_recovered is None):
-            for dual_vector in H_recovered:  # for dual_vector in H_candidate: - sample L.I ones
+        if not (newerly_recovered_vec is None): # if H_recovered is not None, and there is newerly found vectors
+            for dual_vector in newerly_recovered_vec:  # for dual_vector in H_candidate: - sample L.I ones
                 shifts = qc_global_cyclic_shifts_numba(dual_vector, Z)  # shift해서 블럭 개수 늘리기 (block size is given, Z)
                 if H_final is None:
                     H_final = np.array(shifts)
@@ -136,7 +148,7 @@ while mainIter<total_iteration:
         H_final = H_recovered
 
     # 8. decoding using hard decision bit flip
-    if not error_free and not (H_final is None):
+    if not error_free and not (newerly_recovered_vec is None): # 새로 발견되는게 있을때만
         decoded_codeword_matrix, ok, _, _, _ = ldpc_bitflip_seqdecode_numba(H_final, A, max_iter=50)
         print("Decoding complete", end=' - ')
         print(" %s seconds" % round(time.time() - start_time, 3))
@@ -161,11 +173,21 @@ print("Elapsed time: %s seconds" % round(this_time - start_time,3))
 print()
 print("Success?: ", check_success(H,H_final))
 
+
 try:
-    save_image_data(H_final, "recovered_qc")
+    if recovered_data_mode == 'w':
+        save_matrix(H_final, 'H_recovered')
+        save_image_data(H_final, "recovered_qc")
+    elif recovered_data_mode == 'a': # append mode
+        # load the matrix and draw a new binary image - used in append mode
+        save_matrix(H_final, 'H_recovered',mode='a')
+        H_recovered = read_matrix("H_recovered")
+        save_image_data(H_recovered, "recovered_qc")
+
 except:
     print("saving img of H failed. Here is what H looks like")
     print(H)
+
 
 '''
 Comment:

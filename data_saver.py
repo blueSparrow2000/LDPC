@@ -7,12 +7,12 @@ import numpy as np
 from variables import codeword_len, databit_num
 
 
-def save_data(filename, data):
-    with open('H_saves/%s.txt'%filename, 'w', newline='') as f:
+def save_data(filename, data, mode):
+    with open('H_saves/%s.txt'%filename, mode, newline='') as f:
         f.write(data)
 
 
-def save_matrix(H, filename = ''):
+def save_matrix(H, filename = '', mode = 'w'):
     m,n = H.shape
     data = ""
     for i in range(m):
@@ -21,7 +21,7 @@ def save_matrix(H, filename = ''):
         data += "\n"
     if filename =='':
         filename = "n_{}_k_{}".format(codeword_len, databit_num)
-    save_data(filename, data)
+    save_data(filename, data, mode)
 
 # convert data into H matrix
 def read_matrix(filename):

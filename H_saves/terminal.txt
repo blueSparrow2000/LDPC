@@ -1,0 +1,136 @@
+C:\Users\kingc\PycharmProjects\LDPC\.venv\Scripts\python.exe C:\Users\kingc\PycharmProjects\LDPC\GERCE_QCLDPC.py 
+##### variable settings #####
+(n, k) = (2048, 1792)
+Number of code words:  20480
+Threshold:  5990
+##############################
+Correct / Total = 16707 / 20480
+Elapsed time: 37.78 seconds
+10th iteration
+Current vectors:  0
+20th iteration
+Current vectors:  0
+30th iteration
+Current vectors:  0
+40th iteration
+Current vectors:  0
+50th iteration
+Current vectors:  0
+H_recovered is None
+10th iteration
+Current vectors:  0
+20th iteration
+Current vectors:  0
+30th iteration
+Current vectors:  1
+40th iteration
+Current vectors:  2
+50th iteration
+Current vectors:  2
+Decoding complete -  567.501 seconds
+Correct / Total = 16824 / 20480
+10th iteration
+Current vectors:  3
+20th iteration
+Current vectors:  3
+30th iteration
+Current vectors:  4
+40th iteration
+Current vectors:  4
+50th iteration
+Current vectors:  4
+Decoding complete -  730.941 seconds
+Correct / Total = 17257 / 20480
+10th iteration
+Current vectors:  4
+20th iteration
+Current vectors:  4
+30th iteration
+Current vectors:  4
+40th iteration
+Current vectors:  4
+50th iteration
+Current vectors:  4
+H_recovered is None
+Decoding complete -  886.967 seconds
+Correct / Total = 17257 / 20480
+10th iteration
+Current vectors:  4
+20th iteration
+Current vectors:  5
+30th iteration
+Current vectors:  6
+40th iteration
+Current vectors:  6
+50th iteration
+Current vectors:  7
+Decoding complete -  1046.786 seconds
+Correct / Total = 17806 / 20480
+10th iteration
+Current vectors:  7
+20th iteration
+Current vectors:  7
+30th iteration
+Current vectors:  7
+40th iteration
+Current vectors:  7
+50th iteration
+Current vectors:  7
+H_recovered is None
+Decoding complete -  1220.226 seconds
+Correct / Total = 17806 / 20480
+10th iteration
+Current vectors:  7
+20th iteration
+Current vectors:  8
+30th iteration
+Current vectors:  8
+40th iteration
+Current vectors:  9
+50th iteration
+Current vectors:  10
+Decoding complete -  1387.849 seconds
+Correct / Total = 19121 / 20480
+10th iteration
+Current vectors:  10
+20th iteration
+Current vectors:  11
+30th iteration
+Current vectors:  11
+40th iteration
+Current vectors:  11
+50th iteration
+Current vectors:  12
+Decoding complete -  1567.065 seconds
+Correct / Total = 19001 / 20480
+10th iteration
+Current vectors:  14
+20th iteration
+Current vectors:  14
+30th iteration
+Current vectors:  14
+40th iteration
+Current vectors:  14
+50th iteration
+Current vectors:  14
+Decoding complete -  1736.491 seconds
+Correct / Total = 19122 / 20480
+10th iteration
+Current vectors:  14
+20th iteration
+Current vectors:  15
+30th iteration
+Current vectors:  15
+40th iteration
+Current vectors:  15
+50th iteration
+Current vectors:  16
+Decoding complete -  1895.573 seconds
+Correct / Total = 19002 / 20480
+Main loop done - Elapsed time: 1896.656 seconds
+
+Found all 256 parity check vectors
+Total dual vectors recovered: 1024
+Success?:  False
+
+종료 코드 0(으)로 완료된 프로세스

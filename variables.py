@@ -24,7 +24,7 @@ elif codeword_len >= 2000:
 
 LARGE_CODE = True if codeword_len > 50 else False
 noise_level= 10
-pooling_factor = 7 #7 # magic number - best
+pooling_factor = 10 #7 # magic number - best
 BGCE = True # without BGCE, one may get more dual vectors but they are likely to be erronous
 threshold = round(((pooling_factor-1)*codeword_len)*0.325)  # suggested beta coeff on the paper
 if not BGCE: # if GCE, higher the threshold

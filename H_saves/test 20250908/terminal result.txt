@@ -1,0 +1,14 @@
+##### variable settings #####
+(n, k) = (1024, 768)
+Number of code words:  7168
+Threshold:  1997
+##############################
+Correct / Total = 6472 / 7168
+Elapsed time: 3.181 seconds
+10th iteration
+Main loop done - Elapsed time: 25.114 seconds
+reliability extraction done - Elapsed time: 25.256 seconds
+
+Found all 256 parity check vectors
+Total dual vectors recovered: 384
+Success?:  False

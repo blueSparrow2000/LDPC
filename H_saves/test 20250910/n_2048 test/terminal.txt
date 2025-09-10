@@ -1,0 +1,64 @@
+
+##### variable settings #####
+(n, k) = (2048, 1792)
+Number of code words:  20480
+Threshold:  5990
+##############################
+Correct / Total = 16707 / 20480
+Elapsed time: 15.356 seconds
+10th iteration
+Current vectors:  1
+20th iteration
+Current vectors:  2
+30th iteration
+Current vectors:  2
+40th iteration
+Current vectors:  2
+50th iteration
+Current vectors:  2
+Decoding complete -  266.042 seconds
+Correct / Total = 17049 / 20480
+10th iteration
+Current vectors:  2
+20th iteration
+Current vectors:  2
+30th iteration
+Current vectors:  3
+40th iteration
+Current vectors:  3
+50th iteration
+Current vectors:  3
+Decoding complete -  406.573 seconds
+Correct / Total = 17049 / 20480
+10th iteration
+Current vectors:  3
+20th iteration
+Current vectors:  4
+30th iteration
+Current vectors:  4
+40th iteration
+Current vectors:  4
+50th iteration
+Current vectors:  4
+Decoding complete -  541.085 seconds
+Correct / Total = 17049 / 20480
+10th iteration
+Current vectors:  5
+20th iteration
+Current vectors:  5
+30th iteration
+Current vectors:  6
+40th iteration
+Current vectors:  7
+50th iteration
+Current vectors:  8
+Decoding complete -  693.787 seconds
+Correct / Total = 17049 / 20480
+Main loop done - Elapsed time: 694.668 seconds
+
+Total dual vectors recovered: 512
+correct guess: 128 / 256
+Success?:  False
+
+# 맨 아래 두 블럭 복원 성공. 위 두 블럭은 복원 못함. 랜덤 시드가 중요한가? 콜럼 샘플링이 안된것 같음. 
+# 시드는 1로 함 (생성할땐 0)

@@ -38,11 +38,22 @@ def reliability_extraction(H,codeword, dual_vector_num):
     return H_sorted[:dual_vector_num, :]
 
 
+'''
+Calculate reliability (num of errors) 
+for each block, assign one reliability constant 
+hence, check reliability w.r.t a block
+'''
+def get_confidence_reliability(H,codeword, dual_vector_num, Z): # Z: block size
+    d_num, n= H.shape
+    if d_num <= dual_vector_num: # found less dual vectors
+        # perform only if dual vectors are more than n-k
+        return H
 
+    error_detected = matmul_f2(H,codeword.T)
+    num_err_each_row = np.count_nonzero(error_detected, axis=1)
+    H_sorted = H[num_err_each_row.argsort(),:]
 
-# A = np.array([[1,0,1],[0,0,1],[0,0,0]])
-# get_sparse_column(A)
-
+    return H_sorted[:dual_vector_num, :]
 
 
 
